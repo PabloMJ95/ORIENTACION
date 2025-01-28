@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario Vocacional</title>
+    <script>
+        function saveAndRedirect() {
+            const form = document.forms['questionnaire'];
+            const answers = {};
+            for (let i = 1; i <= 180; i++) {
+                const question = `q${i}`;
+                answers[question] = form[question].value;
+            }
+            localStorage.setItem('questionnaireAnswers', JSON.stringify(answers));
+            window.location.href = 'results.html'; // Redirige a la página de resultados
+        }
+    </script>
+</head>
+<body>
+    <h1>Cuestionario Vocacional</h1>
+    <form name="questionnaire" onsubmit="event.preventDefault(); saveAndRedirect();">
+        <!-- Preguntas del cuestionario -->
+        <div>
+            <label>1. Apagar incendios, prevenirlos, salvar a las personas en los mismos:</label><br>
+            <input type="radio" name="q1" value="A" required> Me gusta<br>
+            <input type="radio" name="q1" value="B"> Me es indiferente o tengo dudas<br>
+            <input type="radio" name="q1" value="C"> No me gusta<br>
+            <input type="radio" name="q1" value="D"> No conozco la actividad<br>
+        </div>
+
+        <div>
+            <label>2. Ser ingeniero en Electrónica:</label><br>
+            <input type="radio" name="q2" value="A" required> Me gusta<br>
+            <input type="radio" name="q2" value="B"> Me es indiferente o tengo dudas<br>
+            <input type="radio" name="q2" value="C"> No me gusta<br>
+            <input type="radio" name="q2" value="D"> No conozco la actividad<br>
+        </div>
+
+        <!-- Añadir preguntas hasta la 180 -->
+        <!-- Para simplificar, se agregarán solo algunas de ejemplo aquí -->
+
+        <div>
+            <label>179. Diseñar con la computadora elementos para la decoración en cerámica, estampados textiles, escaparates, etc.:</label><br>
+            <input type="radio" name="q179" value="A" required> Me gusta<br>
+            <input type="radio" name="q179" value="B"> Me es indiferente o tengo dudas<br>
+            <input type="radio" name="q179" value="C"> No me gusta<br>
+            <input type="radio" name="q179" value="D"> No conozco la actividad<br>
+        </div>
+
+        <div>
+            <label>180. Ser especialista de las Fuerzas Armadas:</label><br>
+            <input type="radio" name="q180" value="A" required> Me gusta<br>
+            <input type="radio" name="q180" value="B"> Me es indiferente o tengo dudas<br>
+            <input type="radio" name="q180" value="C"> No me gusta<br>
+            <input type="radio" name="q180" value="D"> No conozco la actividad<br>
+        </div>
+
+        <button type="submit">Ver resultados</button>
+    </form>
+</body>
+</html>

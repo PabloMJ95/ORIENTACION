@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados del Cuestionario</title>
+    <script>
+        function processResults() {
+            // Recuperar respuestas del localStorage
+            const storedAnswers = localStorage.getItem('questionnaireAnswers');
+            if (!storedAnswers) {
+                alert("No se encontraron respuestas. Por favor, completa el cuestionario.");
+                window.location.href = 'index.html'; // Regresa al cuestionario si no hay datos
+                return;
+            }
+
+            const responses = JSON.parse(storedAnswers);
+
+            // Definir categorías y sus preguntas
+            const categories = {
+                Ciencia: [1, 2, 179, 180],
+                Arte: [9, 14, 15, 60, 174],
+                Deportes: [28, 101, 156],
+                Humanidades: [17, 91, 126],
+                Tecnologia: [3, 55, 141]
+            };
+
+            // Inicializar puntuaciones por categoría
+            const scores = {
+                Ciencia: 0,
+                Arte: 0,
+                Deportes: 0,
+                Humanidades: 0,
+                Tecnologia: 0
+            };
+
+            // Ponderación de respuestas
+            const weights = {
+                A: 3, // Me gusta
+                B: 2, // Me es indiferente o tengo dudas
+                C: 1, // No me gusta
+                D: 0  // No conozco
+            };
+
+            // Calcular puntuaciones por categoría
+            for (const [category, questions] of Object.entries(categories)) {
+                questions.forEach(question => {
+                    const answer = responses[`q${question}`];
+                    scores[category] += weights[answer] || 0;
+                });
+            }
+
+            // Mostrar resultados
+            const resultsContainer = document.getElementById('category-results');
+            let resultHTML = '<h2>Resultados por Categoría:</h2>';
+            for (const [category, score] of Object.entries(scores)) {
+                resultHTML += `<p>${category}: ${score} puntos</p>`;
+            }
+            resultsContainer.innerHTML = resultHTML;
+        }
+
+        window.onload = processResults;
+    </script>
+</head>
+<body>
+    <h1>Resultados del Cuestionario Vocacional</h1>
+    <div id="category-results" style="margin-top: 20px;"></div>
+</body>
+</html>
