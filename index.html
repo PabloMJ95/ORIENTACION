@@ -1,62 +1,2406 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cuestionario Vocacional</title>
+    <link rel="stylesheet" href="styles.css" />
     <script>
-        function saveAndRedirect() {
-            const form = document.forms['questionnaire'];
-            const answers = {};
-            for (let i = 1; i <= 180; i++) {
-                const question = `q${i}`;
-                answers[question] = form[question].value;
-            }
-            localStorage.setItem('questionnaireAnswers', JSON.stringify(answers));
-            window.location.href = 'results.html'; // Redirige a la página de resultados
+      document.addEventListener("DOMContentLoaded", function () {
+        let answers = {}; // Objeto para almacenar las respuestas seleccionadas
+
+        // Guardar las respuestas seleccionadas
+        function saveAnswers() {
+          document
+            .querySelectorAll("input[type='radio']:checked")
+            .forEach((input) => {
+              answers[input.name] = input.value;
+            });
+          localStorage.setItem("questionnaireAnswers", JSON.stringify(answers));
         }
+
+        // Función para guardar y redirigir al resultado final
+        document
+          .querySelector("#submit")
+          .addEventListener("click", function () {
+            saveAnswers();
+            localStorage.setItem(
+              "questionnaireAnswers",
+              JSON.stringify(answers)
+            );
+            window.location.href = "results.html"; // Redirigir a los resultados
+          });
+      });
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Cuestionario Vocacional</h1>
-    <form name="questionnaire" onsubmit="event.preventDefault(); saveAndRedirect();">
-        <!-- Preguntas del cuestionario -->
-        <div>
-            <label>1. Apagar incendios, prevenirlos, salvar a las personas en los mismos:</label><br>
-            <input type="radio" name="q1" value="A" required> Me gusta<br>
-            <input type="radio" name="q1" value="B"> Me es indiferente o tengo dudas<br>
-            <input type="radio" name="q1" value="C"> No me gusta<br>
-            <input type="radio" name="q1" value="D"> No conozco la actividad<br>
-        </div>
+    <form name="questionnaire" onsubmit="event.preventDefault();">
+        <label for="nombre">Nombre:</label><br />
+        <input type="text" id="nombre" name="nombre" required /><br /><br />
+      
+        <label for="email">Correo electrónico:</label><br />
+        <input type="email" id="email" name="email" required /><br /><br />
+      <!-- Pregunta 1 -->
+      <div class="question">
+        <label for="q1A"
+          >1. Apagar incendios, prevenirlos, salvar a las personas en los
+          mismos.</label
+        ><br />
+        <input type="radio" id="q1A" name="q1" value="A" />
+        <label for="q1A">Me gusta</label><br />
+        <input type="radio" id="q1B" name="q1" value="B" />
+        <label for="q1B">Me es indiferente</label><br />
+        <input type="radio" id="q1C" name="q1" value="C" />
+        <label for="q1C">No me gusta</label><br />
+        <input type="radio" id="q1D" name="q1" value="D" />
+        <label for="q1D">No conozco</label><br />
+      </div>
+      <!-- Pregunta 2 -->
+      <div class="question">
+        <label for="q2A">2. Ser ingeniero en Electrónica.</label><br />
+        <input type="radio" id="q2A" name="q2" value="A" />
+        <label for="q2A">Me gusta</label><br />
+        <input type="radio" id="q2B" name="q2" value="B" />
+        <label for="q2B">Me es indiferente</label><br />
+        <input type="radio" id="q2C" name="q2" value="C" />
+        <label for="q2C">No me gusta</label><br />
+        <input type="radio" id="q2D" name="q2" value="D" />
+        <label for="q2D">No conozco</label><br />
+      </div>
 
-        <div>
-            <label>2. Ser ingeniero en Electrónica:</label><br>
-            <input type="radio" name="q2" value="A" required> Me gusta<br>
-            <input type="radio" name="q2" value="B"> Me es indiferente o tengo dudas<br>
-            <input type="radio" name="q2" value="C"> No me gusta<br>
-            <input type="radio" name="q2" value="D"> No conozco la actividad<br>
-        </div>
+      <!-- Pregunta 3 -->
+      <div class="question">
+        <label for="q3A"
+          >3. Realizar tareas relacionadas a diversos campos de la informática
+          (trabajos de programación, análisis, ensamblaje de
+          computadoras).</label
+        ><br />
+        <input type="radio" id="q3A" name="q3" value="A" />
+        <label for="q3A">Me gusta</label><br />
+        <input type="radio" id="q3B" name="q3" value="B" />
+        <label for="q3B">Me es indiferente</label><br />
+        <input type="radio" id="q3C" name="q3" value="C" />
+        <label for="q3C">No me gusta</label><br />
+        <input type="radio" id="q3D" name="q3" value="D" />
+        <label for="q3D">No conozco</label><br />
+      </div>
 
-        <!-- Añadir preguntas hasta la 180 -->
-        <!-- Para simplificar, se agregarán solo algunas de ejemplo aquí -->
+      <!-- Pregunta 4 -->
+      <div class="question">
+        <label for="q4A">4. Trabajar como publicista.</label><br />
+        <input type="radio" id="q4A" name="q4" value="A" />
+        <label for="q4A">Me gusta</label><br />
+        <input type="radio" id="q4B" name="q4" value="B" />
+        <label for="q4B">Me es indiferente</label><br />
+        <input type="radio" id="q4C" name="q4" value="C" />
+        <label for="q4C">No me gusta</label><br />
+        <input type="radio" id="q4D" name="q4" value="D" />
+        <label for="q4D">No conozco</label><br />
+      </div>
 
-        <div>
-            <label>179. Diseñar con la computadora elementos para la decoración en cerámica, estampados textiles, escaparates, etc.:</label><br>
-            <input type="radio" name="q179" value="A" required> Me gusta<br>
-            <input type="radio" name="q179" value="B"> Me es indiferente o tengo dudas<br>
-            <input type="radio" name="q179" value="C"> No me gusta<br>
-            <input type="radio" name="q179" value="D"> No conozco la actividad<br>
-        </div>
+      <!-- Pregunta 5 -->
+      <div class="question">
+        <label for="q5A"
+          >5. Asesorar a personas que tienen problemas de alimentación,
+          sugiriéndoles dietas adecuadas.</label
+        ><br />
+        <input type="radio" id="q5A" name="q5" value="A" />
+        <label for="q5A">Me gusta</label><br />
+        <input type="radio" id="q5B" name="q5" value="B" />
+        <label for="q5B">Me es indiferente</label><br />
+        <input type="radio" id="q5C" name="q5" value="C" />
+        <label for="q5C">No me gusta</label><br />
+        <input type="radio" id="q5D" name="q5" value="D" />
+        <label for="q5D">No conozco</label><br />
+      </div>
 
-        <div>
-            <label>180. Ser especialista de las Fuerzas Armadas:</label><br>
-            <input type="radio" name="q180" value="A" required> Me gusta<br>
-            <input type="radio" name="q180" value="B"> Me es indiferente o tengo dudas<br>
-            <input type="radio" name="q180" value="C"> No me gusta<br>
-            <input type="radio" name="q180" value="D"> No conozco la actividad<br>
-        </div>
+      <!-- Pregunta 6 -->
+      <div class="question">
+        <label for="q6A"
+          >6. Ser criminólogo (conocer la problemática del delito).</label
+        ><br />
+        <input type="radio" id="q6A" name="q6" value="A" />
+        <label for="q6A">Me gusta</label><br />
+        <input type="radio" id="q6B" name="q6" value="B" />
+        <label for="q6B">Me es indiferente</label><br />
+        <input type="radio" id="q6C" name="q6" value="C" />
+        <label for="q6C">No me gusta</label><br />
+        <input type="radio" id="q6D" name="q6" value="D" />
+        <label for="q6D">No conozco</label><br />
+      </div>
 
-        <button type="submit">Ver resultados</button>
+      <!-- Pregunta 7 -->
+      <div class="question">
+        <label for="q7A"
+          >7. Elaborar proyectos para la construcción de diversas obras (casas,
+          edificios, centros comerciales).</label
+        ><br />
+        <input type="radio" id="q7A" name="q7" value="A" />
+        <label for="q7A">Me gusta</label><br />
+        <input type="radio" id="q7B" name="q7" value="B" />
+        <label for="q7B">Me es indiferente</label><br />
+        <input type="radio" id="q7C" name="q7" value="C" />
+        <label for="q7C">No me gusta</label><br />
+        <input type="radio" id="q7D" name="q7" value="D" />
+        <label for="q7D">No conozco</label><br />
+      </div>
+
+      <!-- Pregunta 8 -->
+      <div class="question">
+        <label for="q8A">8. Ser administrador.</label><br />
+        <input type="radio" id="q8A" name="q8" value="A" />
+        <label for="q8A">Me gusta</label><br />
+        <input type="radio" id="q8B" name="q8" value="B" />
+        <label for="q8B">Me es indiferente</label><br />
+        <input type="radio" id="q8C" name="q8" value="C" />
+        <label for="q8C">No me gusta</label><br />
+        <input type="radio" id="q8D" name="q8" value="D" />
+        <label for="q8D">No conozco</label><br />
+      </div>
+
+      <!-- Pregunta 9 -->
+      <div class="question">
+        <label for="q9A"
+          >9. Realizar actividades relacionadas con bienes culturales
+          (conservación, restauración de esculturas, cuadros, elementos
+          arqueológicos, documentos, etc.) sin alterarlos.</label
+        ><br />
+        <input type="radio" id="q9A" name="q9" value="A" />
+        <label for="q9A">Me gusta</label><br />
+        <input type="radio" id="q9B" name="q9" value="B" />
+        <label for="q9B">Me es indiferente</label><br />
+        <input type="radio" id="q9C" name="q9" value="C" />
+        <label for="q9C">No me gusta</label><br />
+        <input type="radio" id="q9D" name="q9" value="D" />
+        <label for="q9D">No conozco</label><br />
+      </div>
+
+      <!-- Pregunta 10 -->
+      <div class="question">
+        <label for="q10A">10. Trabajar animando programas turísticos.</label
+        ><br />
+        <input type="radio" id="q10A" name="q10" value="A" />
+        <label for="q10A">Me gusta</label><br />
+        <input type="radio" id="q10B" name="q10" value="B" />
+        <label for="q10B">Me es indiferente</label><br />
+        <input type="radio" id="q10C" name="q10" value="C" />
+        <label for="q10C">No me gusta</label><br />
+        <input type="radio" id="q10D" name="q10" value="D" />
+        <label for="q10D">No conozco</label><br />
+      </div>
+
+<!-- Pregunta 11 -->
+<div class="question">
+    <label for="q11A">11. Rescatar a personas que se encuentren en situaciones peligrosas en el mar, ríos, pantanos, etc.</label><br />
+    <input type="radio" id="q11A" name="q11" value="A" />
+    <label for="q11A">Me gusta</label><br />
+    <input type="radio" id="q11B" name="q11" value="B" />
+    <label for="q11B">Me es indiferente</label><br />
+    <input type="radio" id="q11C" name="q11" value="C" />
+    <label for="q11C">No me gusta</label><br />
+    <input type="radio" id="q11D" name="q11" value="D" />
+    <label for="q11D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 12 -->
+  <div class="question">
+    <label for="q12A">12. Ser ingeniero forestal.</label><br />
+    <input type="radio" id="q12A" name="q12" value="A" />
+    <label for="q12A">Me gusta</label><br />
+    <input type="radio" id="q12B" name="q12" value="B" />
+    <label for="q12B">Me es indiferente</label><br />
+    <input type="radio" id="q12C" name="q12" value="C" />
+    <label for="q12C">No me gusta</label><br />
+    <input type="radio" id="q12D" name="q12" value="D" />
+    <label for="q12D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 13 -->
+  <div class="question">
+    <label for="q13A">13. Buscar, redactar noticias para su difusión en diversos medios de comunicación.</label><br />
+    <input type="radio" id="q13A" name="q13" value="A" />
+    <label for="q13A">Me gusta</label><br />
+    <input type="radio" id="q13B" name="q13" value="B" />
+    <label for="q13B">Me es indiferente</label><br />
+    <input type="radio" id="q13C" name="q13" value="C" />
+    <label for="q13C">No me gusta</label><br />
+    <input type="radio" id="q13D" name="q13" value="D" />
+    <label for="q13D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 14 -->
+  <div class="question">
+    <label for="q14A">14. Trabajar como restaurador de bienes culturales.</label><br />
+    <input type="radio" id="q14A" name="q14" value="A" />
+    <label for="q14A">Me gusta</label><br />
+    <input type="radio" id="q14B" name="q14" value="B" />
+    <label for="q14B">Me es indiferente</label><br />
+    <input type="radio" id="q14C" name="q14" value="C" />
+    <label for="q14C">No me gusta</label><br />
+    <input type="radio" id="q14D" name="q14" value="D" />
+    <label for="q14D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 15 -->
+  <div class="question">
+    <label for="q15A">15. Tocar un instrumento (piano, violín, guitarra, etc.), en una orquesta, como solista.</label><br />
+    <input type="radio" id="q15A" name="q15" value="A" />
+    <label for="q15A">Me gusta</label><br />
+    <input type="radio" id="q15B" name="q15" value="B" />
+    <label for="q15B">Me es indiferente</label><br />
+    <input type="radio" id="q15C" name="q15" value="C" />
+    <label for="q15C">No me gusta</label><br />
+    <input type="radio" id="q15D" name="q15" value="D" />
+    <label for="q15D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 16 -->
+  <div class="question">
+    <label for="q16A">16. Ser bombero.</label><br />
+    <input type="radio" id="q16A" name="q16" value="A" />
+    <label for="q16A">Me gusta</label><br />
+    <input type="radio" id="q16B" name="q16" value="B" />
+    <label for="q16B">Me es indiferente</label><br />
+    <input type="radio" id="q16C" name="q16" value="C" />
+    <label for="q16C">No me gusta</label><br />
+    <input type="radio" id="q16D" name="q16" value="D" />
+    <label for="q16D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 17 -->
+  <div class="question">
+    <label for="q17A">17. Investigar la actuación del hombre en sus diversos aspectos a lo largo del tiempo, difundiendo los hallazgos de diversas formas (como profesor, escribiendo artículos, publicando libros).</label><br />
+    <input type="radio" id="q17A" name="q17" value="A" />
+    <label for="q17A">Me gusta</label><br />
+    <input type="radio" id="q17B" name="q17" value="B" />
+    <label for="q17B">Me es indiferente</label><br />
+    <input type="radio" id="q17C" name="q17" value="C" />
+    <label for="q17C">No me gusta</label><br />
+    <input type="radio" id="q17D" name="q17" value="D" />
+    <label for="q17D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 18 -->
+  <div class="question">
+    <label for="q18A">18. Ser dietista (diplomado en Nutrición Humana).</label><br />
+    <input type="radio" id="q18A" name="q18" value="A" />
+    <label for="q18A">Me gusta</label><br />
+    <input type="radio" id="q18B" name="q18" value="B" />
+    <label for="q18B">Me es indiferente</label><br />
+    <input type="radio" id="q18C" name="q18" value="C" />
+    <label for="q18C">No me gusta</label><br />
+    <input type="radio" id="q18D" name="q18" value="D" />
+    <label for="q18D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 19 -->
+  <div class="question">
+    <label for="q19A">19. Realizar las tareas necesarias para garantizar la seguridad de los ciudadanos.</label><br />
+    <input type="radio" id="q19A" name="q19" value="A" />
+    <label for="q19A">Me gusta</label><br />
+    <input type="radio" id="q19B" name="q19" value="B" />
+    <label for="q19B">Me es indiferente</label><br />
+    <input type="radio" id="q19C" name="q19" value="C" />
+    <label for="q19C">No me gusta</label><br />
+    <input type="radio" id="q19D" name="q19" value="D" />
+    <label for="q19D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 20 -->
+  <div class="question">
+    <label for="q20A">20. Ser ingeniero de sistemas.</label><br />
+    <input type="radio" id="q20A" name="q20" value="A" />
+    <label for="q20A">Me gusta</label><br />
+    <input type="radio" id="q20B" name="q20" value="B" />
+    <label for="q20B">Me es indiferente</label><br />
+    <input type="radio" id="q20C" name="q20" value="C" />
+    <label for="q20C">No me gusta</label><br />
+    <input type="radio" id="q20D" name="q20" value="D" />
+    <label for="q20D">No conozco</label><br />
+  </div>
+  <!-- Pregunta 21 -->
+<div class="question">
+    <label for="q21A">21. Ofrecer recitales, conciertos interpretando canciones (clásicas, modernas).</label><br />
+    <input type="radio" id="q21A" name="q21" value="A" />
+    <label for="q21A">Me gusta</label><br />
+    <input type="radio" id="q21B" name="q21" value="B" />
+    <label for="q21B">Me es indiferente</label><br />
+    <input type="radio" id="q21C" name="q21" value="C" />
+    <label for="q21C">No me gusta</label><br />
+    <input type="radio" id="q21D" name="q21" value="D" />
+    <label for="q21D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 22 -->
+  <div class="question">
+    <label for="q22A">22. Trabajar como licenciado en Comunicación Audiovisual.</label><br />
+    <input type="radio" id="q22A" name="q22" value="A" />
+    <label for="q22A">Me gusta</label><br />
+    <input type="radio" id="q22B" name="q22" value="B" />
+    <label for="q22B">Me es indiferente</label><br />
+    <input type="radio" id="q22C" name="q22" value="C" />
+    <label for="q22C">No me gusta</label><br />
+    <input type="radio" id="q22D" name="q22" value="D" />
+    <label for="q22D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 23 -->
+  <div class="question">
+    <label for="q23A">23. Trabajar en asuntos relacionados con la búsqueda de empleo, organización del trabajo, gestión personal.</label><br />
+    <input type="radio" id="q23A" name="q23" value="A" />
+    <label for="q23A">Me gusta</label><br />
+    <input type="radio" id="q23B" name="q23" value="B" />
+    <label for="q23B">Me es indiferente</label><br />
+    <input type="radio" id="q23C" name="q23" value="C" />
+    <label for="q23C">No me gusta</label><br />
+    <input type="radio" id="q23D" name="q23" value="D" />
+    <label for="q23D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 24 -->
+  <div class="question">
+    <label for="q24A">24. Trabajar como guía de turismo.</label><br />
+    <input type="radio" id="q24A" name="q24" value="A" />
+    <label for="q24A">Me gusta</label><br />
+    <input type="radio" id="q24B" name="q24" value="B" />
+    <label for="q24B">Me es indiferente</label><br />
+    <input type="radio" id="q24C" name="q24" value="C" />
+    <label for="q24C">No me gusta</label><br />
+    <input type="radio" id="q24D" name="q24" value="D" />
+    <label for="q24D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 25 -->
+  <div class="question">
+    <label for="q25A">25. Aplicar los conocimientos sobre informática en el desarrollo de programas de gestión para empresas.</label><br />
+    <input type="radio" id="q25A" name="q25" value="A" />
+    <label for="q25A">Me gusta</label><br />
+    <input type="radio" id="q25B" name="q25" value="B" />
+    <label for="q25B">Me es indiferente</label><br />
+    <input type="radio" id="q25C" name="q25" value="C" />
+    <label for="q25C">No me gusta</label><br />
+    <input type="radio" id="q25D" name="q25" value="D" />
+    <label for="q25D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 26 -->
+  <div class="question">
+    <label for="q26A">26. Ser músico, instrumentista.</label><br />
+    <input type="radio" id="q26A" name="q26" value="A" />
+    <label for="q26A">Me gusta</label><br />
+    <input type="radio" id="q26B" name="q26" value="B" />
+    <label for="q26B">Me es indiferente</label><br />
+    <input type="radio" id="q26C" name="q26" value="C" />
+    <label for="q26C">No me gusta</label><br />
+    <input type="radio" id="q26D" name="q26" value="D" />
+    <label for="q26D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 27 -->
+  <div class="question">
+    <label for="q27A">27. Realizar trabajos técnicos en las Fuerzas Armadas, formando parte de estas.</label><br />
+    <input type="radio" id="q27A" name="q27" value="A" />
+    <label for="q27A">Me gusta</label><br />
+    <input type="radio" id="q27B" name="q27" value="B" />
+    <label for="q27B">Me es indiferente</label><br />
+    <input type="radio" id="q27C" name="q27" value="C" />
+    <label for="q27C">No me gusta</label><br />
+    <input type="radio" id="q27D" name="q27" value="D" />
+    <label for="q27D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 28 -->
+  <div class="question">
+    <label for="q28A">28. Trabajar como animador de actividades deportivas.</label><br />
+    <input type="radio" id="q28A" name="q28" value="A" />
+    <label for="q28A">Me gusta</label><br />
+    <input type="radio" id="q28B" name="q28" value="B" />
+    <label for="q28B">Me es indiferente</label><br />
+    <input type="radio" id="q28C" name="q28" value="C" />
+    <label for="q28C">No me gusta</label><br />
+    <input type="radio" id="q28D" name="q28" value="D" />
+    <label for="q28D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 29 -->
+  <div class="question">
+    <label for="q29A">29. Intervenir ante los tribunales de justicia, representando a diversas instancias (personas, Estado) en nombre de la ley, defendiendo sus intereses legales.</label><br />
+    <input type="radio" id="q29A" name="q29" value="A" />
+    <label for="q29A">Me gusta</label><br />
+    <input type="radio" id="q29B" name="q29" value="B" />
+    <label for="q29B">Me es indiferente</label><br />
+    <input type="radio" id="q29C" name="q29" value="C" />
+    <label for="q29C">No me gusta</label><br />
+    <input type="radio" id="q29D" name="q29" value="D" />
+    <label for="q29D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 30 -->
+  <div class="question">
+    <label for="q30A">30. Trabajar brindando información turística.</label><br />
+    <input type="radio" id="q30A" name="q30" value="A" />
+    <label for="q30A">Me gusta</label><br />
+    <input type="radio" id="q30B" name="q30" value="B" />
+    <label for="q30B">Me es indiferente</label><br />
+    <input type="radio" id="q30C" name="q30" value="C" />
+    <label for="q30C">No me gusta</label><br />
+    <input type="radio" id="q30D" name="q30" value="D" />
+    <label for="q30D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 31 -->
+  <div class="question">
+    <label for="q31A">31. Realizar actividades agrícolas para obtener mejores variedades de productos vegetales.</label><br />
+    <input type="radio" id="q31A" name="q31" value="A" />
+    <label for="q31A">Me gusta</label><br />
+    <input type="radio" id="q31B" name="q31" value="B" />
+    <label for="q31B">Me es indiferente</label><br />
+    <input type="radio" id="q31C" name="q31" value="C" />
+    <label for="q31C">No me gusta</label><br />
+    <input type="radio" id="q31D" name="q31" value="D" />
+    <label for="q31D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 32 -->
+  <div class="question">
+    <label for="q32A">32. Trabajar en el área de Recursos Humanos.</label><br />
+    <input type="radio" id="q32A" name="q32" value="A" />
+    <label for="q32A">Me gusta</label><br />
+    <input type="radio" id="q32B" name="q32" value="B" />
+    <label for="q32B">Me es indiferente</label><br />
+    <input type="radio" id="q32C" name="q32" value="C" />
+    <label for="q32C">No me gusta</label><br />
+    <input type="radio" id="q32D" name="q32" value="D" />
+    <label for="q32D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 33 -->
+  <div class="question">
+    <label for="q33A">33. Organizar asociaciones de propietarios en la implementación de diversas actividades (elaborando estatutos, participando en sus reuniones, elaborando actas, formalizando contratos).</label><br />
+    <input type="radio" id="q33A" name="q33" value="A" />
+    <label for="q33A">Me gusta</label><br />
+    <input type="radio" id="q33B" name="q33" value="B" />
+    <label for="q33B">Me es indiferente</label><br />
+    <input type="radio" id="q33C" name="q33" value="C" />
+    <label for="q33C">No me gusta</label><br />
+    <input type="radio" id="q33D" name="q33" value="D" />
+    <label for="q33D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 34 -->
+  <div class="question">
+    <label for="q34A">34. Trabajar como técnico en restauración.</label><br />
+    <input type="radio" id="q34A" name="q34" value="A" />
+    <label for="q34A">Me gusta</label><br />
+    <input type="radio" id="q34B" name="q34" value="B" />
+    <label for="q34B">Me es indiferente</label><br />
+    <input type="radio" id="q34C" name="q34" value="C" />
+    <label for="q34C">No me gusta</label><br />
+    <input type="radio" id="q34D" name="q34" value="D" />
+    <label for="q34D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 35 -->
+  <div class="question">
+    <label for="q35A">35. Dirigir la construcción de edificios controlando los materiales empleados.</label><br />
+    <input type="radio" id="q35A" name="q35" value="A" />
+    <label for="q35A">Me gusta</label><br />
+    <input type="radio" id="q35B" name="q35" value="B" />
+    <label for="q35B">Me es indiferente</label><br />
+    <input type="radio" id="q35C" name="q35" value="C" />
+    <label for="q35C">No me gusta</label><br />
+    <input type="radio" id="q35D" name="q35" value="D" />
+    <label for="q35D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 36 -->
+  <div class="question">
+    <label for="q36A">36. Trabajar como conductor de actividades deportivas al aire libre.</label><br />
+    <input type="radio" id="q36A" name="q36" value="A" />
+    <label for="q36A">Me gusta</label><br />
+    <input type="radio" id="q36B" name="q36" value="B" />
+    <label for="q36B">Me es indiferente</label><br />
+    <input type="radio" id="q36C" name="q36" value="C" />
+    <label for="q36C">No me gusta</label><br />
+    <input type="radio" id="q36D" name="q36" value="D" />
+    <label for="q36D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 37 -->
+  <div class="question">
+    <label for="q37A">37. Atender enfermedades de diverso tipo relacionadas con los sistemas del organismo (locomotor, nervioso), utilizando diversas técnicas.</label><br />
+    <input type="radio" id="q37A" name="q37" value="A" />
+    <label for="q37A">Me gusta</label><br />
+    <input type="radio" id="q37B" name="q37" value="B" />
+    <label for="q37B">Me es indiferente</label><br />
+    <input type="radio" id="q37C" name="q37" value="C" />
+    <label for="q37C">No me gusta</label><br />
+    <input type="radio" id="q37D" name="q37" value="D" />
+    <label for="q37D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 38 -->
+  <div class="question">
+    <label for="q38A">38. Trabajar como profesor de Educación Física.</label><br />
+    <input type="radio" id="q38A" name="q38" value="A" />
+    <label for="q38A">Me gusta</label><br />
+    <input type="radio" id="q38B" name="q38" value="B" />
+    <label for="q38B">Me es indiferente</label><br />
+    <input type="radio" id="q38C" name="q38" value="C" />
+    <label for="q38C">No me gusta</label><br />
+    <input type="radio" id="q38D" name="q38" value="D" />
+    <label for="q38D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 39 -->
+  <div class="question">
+    <label for="q39A">39. Dirigir programas culturales identificando los diversos componentes que esta actividad requiere (actividades, recursos, documentación).</label><br />
+    <input type="radio" id="q39A" name="q39" value="A" />
+    <label for="q39A">Me gusta</label><br />
+    <input type="radio" id="q39B" name="q39" value="B" />
+    <label for="q39B">Me es indiferente</label><br />
+    <input type="radio" id="q39C" name="q39" value="C" />
+    <label for="q39C">No me gusta</label><br />
+    <input type="radio" id="q39D" name="q39" value="D" />
+    <label for="q39D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 40 -->
+  <div class="question">
+    <label for="q40A">40. Ser administrador de propiedades.</label><br />
+    <input type="radio" id="q40A" name="q40" value="A" />
+    <label for="q40A">Me gusta</label><br />
+    <input type="radio" id="q40B" name="q40" value="B" />
+    <label for="q40B">Me es indiferente</label><br />
+    <input type="radio" id="q40C" name="q40" value="C" />
+    <label for="q40C">No me gusta</label><br />
+    <input type="radio" id="q40D" name="q40" value="D" />
+    <label for="q40D">No conozco</label><br />
+  </div>
+  
+<!-- Pregunta 41 -->
+<div class="question">
+    <label for="q41A">41. Organizar actividades (físicas, deportivas) en diversas instituciones (educativas, centros de salud, etc.), adaptándolas a las características de los participantes.</label><br />
+    <input type="radio" id="q41A" name="q41" value="A" />
+    <label for="q41A">Me gusta</label><br />
+    <input type="radio" id="q41B" name="q41" value="B" />
+    <label for="q41B">Me es indiferente</label><br />
+    <input type="radio" id="q41C" name="q41" value="C" />
+    <label for="q41C">No me gusta</label><br />
+    <input type="radio" id="q41D" name="q41" value="D" />
+    <label for="q41D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 42 -->
+  <div class="question">
+    <label for="q42A">42. Ser musicólogo.</label><br />
+    <input type="radio" id="q42A" name="q42" value="A" />
+    <label for="q42A">Me gusta</label><br />
+    <input type="radio" id="q42B" name="q42" value="B" />
+    <label for="q42B">Me es indiferente</label><br />
+    <input type="radio" id="q42C" name="q42" value="C" />
+    <label for="q42C">No me gusta</label><br />
+    <input type="radio" id="q42D" name="q42" value="D" />
+    <label for="q42D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 43 -->
+  <div class="question">
+    <label for="q43A">43. Trabajar en la educación de adultos, utilizando recursos didácticos y nuevas tecnologías.</label><br />
+    <input type="radio" id="q43A" name="q43" value="A" />
+    <label for="q43A">Me gusta</label><br />
+    <input type="radio" id="q43B" name="q43" value="B" />
+    <label for="q43B">Me es indiferente</label><br />
+    <input type="radio" id="q43C" name="q43" value="C" />
+    <label for="q43C">No me gusta</label><br />
+    <input type="radio" id="q43D" name="q43" value="D" />
+    <label for="q43D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 44 -->
+  <div class="question">
+    <label for="q44A">44. Ser técnico en Informática de Negocios.</label><br />
+    <input type="radio" id="q44A" name="q44" value="A" />
+    <label for="q44A">Me gusta</label><br />
+    <input type="radio" id="q44B" name="q44" value="B" />
+    <label for="q44B">Me es indiferente</label><br />
+    <input type="radio" id="q44C" name="q44" value="C" />
+    <label for="q44C">No me gusta</label><br />
+    <input type="radio" id="q44D" name="q44" value="D" />
+    <label for="q44D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 45 -->
+  <div class="question">
+    <label for="q45A">45. Dedicarse a la conservación de recursos naturales, aplicando conocimientos científicos sobre el medio ambiente.</label><br />
+    <input type="radio" id="q45A" name="q45" value="A" />
+    <label for="q45A">Me gusta</label><br />
+    <input type="radio" id="q45B" name="q45" value="B" />
+    <label for="q45B">Me es indiferente</label><br />
+    <input type="radio" id="q45C" name="q45" value="C" />
+    <label for="q45C">No me gusta</label><br />
+    <input type="radio" id="q45D" name="q45" value="D" />
+    <label for="q45D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 46 -->
+  <div class="question">
+    <label for="q46A">46. Ser economista.</label><br />
+    <input type="radio" id="q46A" name="q46" value="A" />
+    <label for="q46A">Me gusta</label><br />
+    <input type="radio" id="q46B" name="q46" value="B" />
+    <label for="q46B">Me es indiferente</label><br />
+    <input type="radio" id="q46C" name="q46" value="C" />
+    <label for="q46C">No me gusta</label><br />
+    <input type="radio" id="q46D" name="q46" value="D" />
+    <label for="q46D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 47 -->
+  <div class="question">
+    <label for="q47A">47. Trabajar en explotaciones ganaderas ocupándose de la alimentación e higiene de los animales destinados a la producción de alimentos (leche, carne, etc.).</label><br />
+    <input type="radio" id="q47A" name="q47" value="A" />
+    <label for="q47A">Me gusta</label><br />
+    <input type="radio" id="q47B" name="q47" value="B" />
+    <label for="q47B">Me es indiferente</label><br />
+    <input type="radio" id="q47C" name="q47" value="C" />
+    <label for="q47C">No me gusta</label><br />
+    <input type="radio" id="q47D" name="q47" value="D" />
+    <label for="q47D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 48 -->
+  <div class="question">
+    <label for="q48A">48. Ejercer la profesión de historiador.</label><br />
+    <input type="radio" id="q48A" name="q48" value="A" />
+    <label for="q48A">Me gusta</label><br />
+    <input type="radio" id="q48B" name="q48" value="B" />
+    <label for="q48B">Me es indiferente</label><br />
+    <input type="radio" id="q48C" name="q48" value="C" />
+    <label for="q48C">No me gusta</label><br />
+    <input type="radio" id="q48D" name="q48" value="D" />
+    <label for="q48D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 49 -->
+  <div class="question">
+    <label for="q49A">49. Realizar, en las Fuerzas Armadas, trabajos de especialista en mecánica, electricidad, electrónica, etc.</label><br />
+    <input type="radio" id="q49A" name="q49" value="A" />
+    <label for="q49A">Me gusta</label><br />
+    <input type="radio" id="q49B" name="q49" value="B" />
+    <label for="q49B">Me es indiferente</label><br />
+    <input type="radio" id="q49C" name="q49" value="C" />
+    <label for="q49C">No me gusta</label><br />
+    <input type="radio" id="q49D" name="q49" value="D" />
+    <label for="q49D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 50 -->
+  <div class="question">
+    <label for="q50A">50. Trabajar como técnico en administración de sistemas informáticos.</label><br />
+    <input type="radio" id="q50A" name="q50" value="A" />
+    <label for="q50A">Me gusta</label><br />
+    <input type="radio" id="q50B" name="q50" value="B" />
+    <label for="q50B">Me es indiferente</label><br />
+    <input type="radio" id="q50C" name="q50" value="C" />
+    <label for="q50C">No me gusta</label><br />
+    <input type="radio" id="q50D" name="q50" value="D" />
+    <label for="q50D">No conozco</label><br />
+  </div>
+  
+<!-- Pregunta 51 -->
+<div class="question">
+    <label for="q51A">51. Aplicar conocimientos profesionales en el registro, reproducción, y captación de sonidos en espectáculos diversos, garantizando una buena calidad.</label><br />
+    <input type="radio" id="q51A" name="q51" value="A" />
+    <label for="q51A">Me gusta</label><br />
+    <input type="radio" id="q51B" name="q51" value="B" />
+    <label for="q51B">Me es indiferente</label><br />
+    <input type="radio" id="q51C" name="q51" value="C" />
+    <label for="q51C">No me gusta</label><br />
+    <input type="radio" id="q51D" name="q51" value="D" />
+    <label for="q51D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 52 -->
+  <div class="question">
+    <label for="q52A">52. Ser cantante.</label><br />
+    <input type="radio" id="q52A" name="q52" value="A" />
+    <label for="q52A">Me gusta</label><br />
+    <input type="radio" id="q52B" name="q52" value="B" />
+    <label for="q52B">Me es indiferente</label><br />
+    <input type="radio" id="q52C" name="q52" value="C" />
+    <label for="q52C">No me gusta</label><br />
+    <input type="radio" id="q52D" name="q52" value="D" />
+    <label for="q52D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 53 -->
+  <div class="question">
+    <label for="q53A">53. Realizar trámites (seguros, permisos de conducir, de armas, etc.) a quien lo solicite (empresas, personas).</label><br />
+    <input type="radio" id="q53A" name="q53" value="A" />
+    <label for="q53A">Me gusta</label><br />
+    <input type="radio" id="q53B" name="q53" value="B" />
+    <label for="q53B">Me es indiferente</label><br />
+    <input type="radio" id="q53C" name="q53" value="C" />
+    <label for="q53C">No me gusta</label><br />
+    <input type="radio" id="q53D" name="q53" value="D" />
+    <label for="q53D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 54 -->
+  <div class="question">
+    <label for="q54A">54. Ser veterinario.</label><br />
+    <input type="radio" id="q54A" name="q54" value="A" />
+    <label for="q54A">Me gusta</label><br />
+    <input type="radio" id="q54B" name="q54" value="B" />
+    <label for="q54B">Me es indiferente</label><br />
+    <input type="radio" id="q54C" name="q54" value="C" />
+    <label for="q54C">No me gusta</label><br />
+    <input type="radio" id="q54D" name="q54" value="D" />
+    <label for="q54D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 55 -->
+  <div class="question">
+    <label for="q55A">55. Aplicar conocimientos de informática para el tratamiento gráfico de datos.</label><br />
+    <input type="radio" id="q55A" name="q55" value="A" />
+    <label for="q55A">Me gusta</label><br />
+    <input type="radio" id="q55B" name="q55" value="B" />
+    <label for="q55B">Me es indiferente</label><br />
+    <input type="radio" id="q55C" name="q55" value="C" />
+    <label for="q55C">No me gusta</label><br />
+    <input type="radio" id="q55D" name="q55" value="D" />
+    <label for="q55D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 56 -->
+  <div class="question">
+    <label for="q56A">56. Ser controlador del tráfico aéreo.</label><br />
+    <input type="radio" id="q56A" name="q56" value="A" />
+    <label for="q56A">Me gusta</label><br />
+    <input type="radio" id="q56B" name="q56" value="B" />
+    <label for="q56B">Me es indiferente</label><br />
+    <input type="radio" id="q56C" name="q56" value="C" />
+    <label for="q56C">No me gusta</label><br />
+    <input type="radio" id="q56D" name="q56" value="D" />
+    <label for="q56D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 57 -->
+  <div class="question">
+    <label for="q57A">57. Enseñar a alumnos con necesidades especiales (físicas, psíquicas), evaluando la situación de cada uno para adaptar las estrategias de enseñanza.</label><br />
+    <input type="radio" id="q57A" name="q57" value="A" />
+    <label for="q57A">Me gusta</label><br />
+    <input type="radio" id="q57B" name="q57" value="B" />
+    <label for="q57B">Me es indiferente</label><br />
+    <input type="radio" id="q57C" name="q57" value="C" />
+    <label for="q57C">No me gusta</label><br />
+    <input type="radio" id="q57D" name="q57" value="D" />
+    <label for="q57D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 58 -->
+  <div class="question">
+    <label for="q58A">58. Trabajar como especialista en servicios de alojamiento.</label><br />
+    <input type="radio" id="q58A" name="q58" value="A" />
+    <label for="q58A">Me gusta</label><br />
+    <input type="radio" id="q58B" name="q58" value="B" />
+    <label for="q58B">Me es indiferente</label><br />
+    <input type="radio" id="q58C" name="q58" value="C" />
+    <label for="q58C">No me gusta</label><br />
+    <input type="radio" id="q58D" name="q58" value="D" />
+    <label for="q58D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 59 -->
+  <div class="question">
+    <label for="q59A">59. Realizar estudios con los seres vivos en diversos campos (Botánica, Zoología, Genética) para aplicar los conocimientos en diversas industrias (sanitaria, alimentación, conservera, etc.).</label><br />
+    <input type="radio" id="q59A" name="q59" value="A" />
+    <label for="q59A">Me gusta</label><br />
+    <input type="radio" id="q59B" name="q59" value="B" />
+    <label for="q59B">Me es indiferente</label><br />
+    <input type="radio" id="q59C" name="q59" value="C" />
+    <label for="q59C">No me gusta</label><br />
+    <input type="radio" id="q59D" name="q59" value="D" />
+    <label for="q59D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 60 -->
+  <div class="question">
+    <label for="q60A">60. Ser dibujante, ilustrador de publicaciones.</label><br />
+    <input type="radio" id="q60A" name="q60" value="A" />
+    <label for="q60A">Me gusta</label><br />
+    <input type="radio" id="q60B" name="q60" value="B" />
+    <label for="q60B">Me es indiferente</label><br />
+    <input type="radio" id="q60C" name="q60" value="C" />
+    <label for="q60C">No me gusta</label><br />
+    <input type="radio" id="q60D" name="q60" value="D" />
+    <label for="q60D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 61 -->
+  <div class="question">
+    <label for="q61A">61. Bailar en representaciones públicas, interpretando danzas (clásica, moderna) en teatros, festivales, etc.</label><br />
+    <input type="radio" id="q61A" name="q61" value="A" />
+    <label for="q61A">Me gusta</label><br />
+    <input type="radio" id="q61B" name="q61" value="B" />
+    <label for="q61B">Me es indiferente</label><br />
+    <input type="radio" id="q61C" name="q61" value="C" />
+    <label for="q61C">No me gusta</label><br />
+    <input type="radio" id="q61D" name="q61" value="D" />
+    <label for="q61D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 62 -->
+  <div class="question">
+    <label for="q62A">62. Ser astrónomo.</label><br />
+    <input type="radio" id="q62A" name="q62" value="A" />
+    <label for="q62A">Me gusta</label><br />
+    <input type="radio" id="q62B" name="q62" value="B" />
+    <label for="q62B">Me es indiferente</label><br />
+    <input type="radio" id="q62C" name="q62" value="C" />
+    <label for="q62C">No me gusta</label><br />
+    <input type="radio" id="q62D" name="q62" value="D" />
+    <label for="q62D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 63 -->
+  <div class="question">
+    <label for="q63A">63. Realizar trabajos de informática aplicada a las comunicaciones.</label><br />
+    <input type="radio" id="q63A" name="q63" value="A" />
+    <label for="q63A">Me gusta</label><br />
+    <input type="radio" id="q63B" name="q63" value="B" />
+    <label for="q63B">Me es indiferente</label><br />
+    <input type="radio" id="q63C" name="q63" value="C" />
+    <label for="q63C">No me gusta</label><br />
+    <input type="radio" id="q63D" name="q63" value="D" />
+    <label for="q63D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 64 -->
+  <div class="question">
+    <label for="q64A">64. Trabajar como técnico en explotaciones ganaderas.</label><br />
+    <input type="radio" id="q64A" name="q64" value="A" />
+    <label for="q64A">Me gusta</label><br />
+    <input type="radio" id="q64B" name="q64" value="B" />
+    <label for="q64B">Me es indiferente</label><br />
+    <input type="radio" id="q64C" name="q64" value="C" />
+    <label for="q64C">No me gusta</label><br />
+    <input type="radio" id="q64D" name="q64" value="D" />
+    <label for="q64D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 65 -->
+  <div class="question">
+    <label for="q65A">65. Estudiar la tierra para localizar recursos naturales (petróleo, gases, minerales), para su explotación.</label><br />
+    <input type="radio" id="q65A" name="q65" value="A" />
+    <label for="q65A">Me gusta</label><br />
+    <input type="radio" id="q65B" name="q65" value="B" />
+    <label for="q65B">Me es indiferente</label><br />
+    <input type="radio" id="q65C" name="q65" value="C" />
+    <label for="q65C">No me gusta</label><br />
+    <input type="radio" id="q65D" name="q65" value="D" />
+    <label for="q65D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 66 -->
+  <div class="question">
+    <label for="q66A">66. Trabajar como maestro especialista en Educación Física.</label><br />
+    <input type="radio" id="q66A" name="q66" value="A" />
+    <label for="q66A">Me gusta</label><br />
+    <input type="radio" id="q66B" name="q66" value="B" />
+    <label for="q66B">Me es indiferente</label><br />
+    <input type="radio" id="q66C" name="q66" value="C" />
+    <label for="q66C">No me gusta</label><br />
+    <input type="radio" id="q66D" name="q66" value="D" />
+    <label for="q66D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 67 -->
+  <div class="question">
+    <label for="q67A">67. Utilizar los conocimientos sobre masajes para ayudar a los deportistas a recuperarse de las lesiones relacionadas con su actividad deportiva.</label><br />
+    <input type="radio" id="q67A" name="q67" value="A" />
+    <label for="q67A">Me gusta</label><br />
+    <input type="radio" id="q67B" name="q67" value="B" />
+    <label for="q67B">Me es indiferente</label><br />
+    <input type="radio" id="q67C" name="q67" value="C" />
+    <label for="q67C">No me gusta</label><br />
+    <input type="radio" id="q67D" name="q67" value="D" />
+    <label for="q67D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 68 -->
+  <div class="question">
+    <label for="q68A">68. Trabajar como vigilante de seguridad.</label><br />
+    <input type="radio" id="q68A" name="q68" value="A" />
+    <label for="q68A">Me gusta</label><br />
+    <input type="radio" id="q68B" name="q68" value="B" />
+    <label for="q68B">Me es indiferente</label><br />
+    <input type="radio" id="q68C" name="q68" value="C" />
+    <label for="q68C">No me gusta</label><br />
+    <input type="radio" id="q68D" name="q68" value="D" />
+    <label for="q68D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 69 -->
+  <div class="question">
+    <label for="q69A">69. Cooperar en la educación de niños entre 0 a 3 años contribuyendo a la mejora de sus hábitos (alimentación, higiene, seguridad), favoreciendo el desarrollo de su autonomía.</label><br />
+    <input type="radio" id="q69A" name="q69" value="A" />
+    <label for="q69A">Me gusta</label><br />
+    <input type="radio" id="q69B" name="q69" value="B" />
+    <label for="q69B">Me es indiferente</label><br />
+    <input type="radio" id="q69C" name="q69" value="C" />
+    <label for="q69C">No me gusta</label><br />
+    <input type="radio" id="q69D" name="q69" value="D" />
+    <label for="q69D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 70 -->
+  <div class="question">
+    <label for="q70A">70. Ser oficial de carrera de las Fuerzas Armadas.</label><br />
+    <input type="radio" id="q70A" name="q70" value="A" />
+    <label for="q70A">Me gusta</label><br />
+    <input type="radio" id="q70B" name="q70" value="B" />
+    <label for="q70B">Me es indiferente</label><br />
+    <input type="radio" id="q70C" name="q70" value="C" />
+    <label for="q70C">No me gusta</label><br />
+    <input type="radio" id="q70D" name="q70" value="D" />
+    <label for="q70D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 71 -->
+  <div class="question">
+    <label for="q71A">71. Realizar actividades de investigación para la conservación así como la preservación de recursos.</label><br />
+    <input type="radio" id="q71A" name="q71" value="A" />
+    <label for="q71A">Me gusta</label><br />
+    <input type="radio" id="q71B" name="q71" value="B" />
+    <label for="q71B">Me es indiferente</label><br />
+    <input type="radio" id="q71C" name="q71" value="C" />
+    <label for="q71C">No me gusta</label><br />
+    <input type="radio" id="q71D" name="q71" value="D" />
+    <label for="q71D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 72 -->
+  <div class="question">
+    <label for="q72A">72. Trabajar como licenciado en economía y finanzas.</label><br />
+    <input type="radio" id="q72A" name="q72" value="A" />
+    <label for="q72A">Me gusta</label><br />
+    <input type="radio" id="q72B" name="q72" value="B" />
+    <label for="q72B">Me es indiferente</label><br />
+    <input type="radio" id="q72C" name="q72" value="C" />
+    <label for="q72C">No me gusta</label><br />
+    <input type="radio" id="q72D" name="q72" value="D" />
+    <label for="q72D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 73 -->
+  <div class="question">
+    <label for="q73A">73. Aplicar conocimientos científicos trabajando en laboratorios donde se preparan medicamentos.</label><br />
+    <input type="radio" id="q73A" name="q73" value="A" />
+    <label for="q73A">Me gusta</label><br />
+    <input type="radio" id="q73B" name="q73" value="B" />
+    <label for="q73B">Me es indiferente</label><br />
+    <input type="radio" id="q73C" name="q73" value="C" />
+    <label for="q73C">No me gusta</label><br />
+    <input type="radio" id="q73D" name="q73" value="D" />
+    <label for="q73D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 74 -->
+  <div class="question">
+    <label for="q74A">74. Ser geólogo.</label><br />
+    <input type="radio" id="q74A" name="q74" value="A" />
+    <label for="q74A">Me gusta</label><br />
+    <input type="radio" id="q74B" name="q74" value="B" />
+    <label for="q74B">Me es indiferente</label><br />
+    <input type="radio" id="q74C" name="q74" value="C" />
+    <label for="q74C">No me gusta</label><br />
+    <input type="radio" id="q74D" name="q74" value="D" />
+    <label for="q74D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 75 -->
+  <div class="question">
+    <label for="q75A">75. Elaborar información para presentarla en medios de comunicación audiovisual.</label><br />
+    <input type="radio" id="q75A" name="q75" value="A" />
+    <label for="q75A">Me gusta</label><br />
+    <input type="radio" id="q75B" name="q75" value="B" />
+    <label for="q75B">Me es indiferente</label><br />
+    <input type="radio" id="q75C" name="q75" value="C" />
+    <label for="q75C">No me gusta</label><br />
+    <input type="radio" id="q75D" name="q75" value="D" />
+    <label for="q75D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 76 -->
+  <div class="question">
+    <label for="q76A">76. Ser especialista en biología marina.</label><br />
+    <input type="radio" id="q76A" name="q76" value="A" />
+    <label for="q76A">Me gusta</label><br />
+    <input type="radio" id="q76B" name="q76" value="B" />
+    <label for="q76B">Me es indiferente</label><br />
+    <input type="radio" id="q76C" name="q76" value="C" />
+    <label for="q76C">No me gusta</label><br />
+    <input type="radio" id="q76D" name="q76" value="D" />
+    <label for="q76D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 77 -->
+  <div class="question">
+    <label for="q77A">77. Desarrollar proyectos de electrónica aplicado a la industria, diseñando circuitos electrónicos.</label><br />
+    <input type="radio" id="q77A" name="q77" value="A" />
+    <label for="q77A">Me gusta</label><br />
+    <input type="radio" id="q77B" name="q77" value="B" />
+    <label for="q77B">Me es indiferente</label><br />
+    <input type="radio" id="q77C" name="q77" value="C" />
+    <label for="q77C">No me gusta</label><br />
+    <input type="radio" id="q77D" name="q77" value="D" />
+    <label for="q77D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 78 -->
+  <div class="question">
+    <label for="q78A">78. Trabajar como diseñador de interiores.</label><br />
+    <input type="radio" id="q78A" name="q78" value="A" />
+    <label for="q78A">Me gusta</label><br />
+    <input type="radio" id="q78B" name="q78" value="B" />
+    <label for="q78B">Me es indiferente</label><br />
+    <input type="radio" id="q78C" name="q78" value="C" />
+    <label for="q78C">No me gusta</label><br />
+    <input type="radio" id="q78D" name="q78" value="D" />
+    <label for="q78D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 79 -->
+  <div class="question">
+    <label for="q79A">79. Tomar decisiones sobre la conservación de espacios naturales (conservación de bosques, reforestación de bosques, prevención de incendios forestales).</label><br />
+    <input type="radio" id="q79A" name="q79" value="A" />
+    <label for="q79A">Me gusta</label><br />
+    <input type="radio" id="q79B" name="q79" value="B" />
+    <label for="q79B">Me es indiferente</label><br />
+    <input type="radio" id="q79C" name="q79" value="C" />
+    <label for="q79C">No me gusta</label><br />
+    <input type="radio" id="q79D" name="q79" value="D" />
+    <label for="q79D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 80 -->
+  <div class="question">
+    <label for="q80A">80. Ser especialista en Telemática (combinación de servicios de informática y telecomunicación).</label><br />
+    <input type="radio" id="q80A" name="q80" value="A" />
+    <label for="q80A">Me gusta</label><br />
+    <input type="radio" id="q80B" name="q80" value="B" />
+    <label for="q80B">Me es indiferente</label><br />
+    <input type="radio" id="q80C" name="q80" value="C" />
+    <label for="q80C">No me gusta</label><br />
+    <input type="radio" id="q80D" name="q80" value="D" />
+    <label for="q80D">No conozco</label><br />
+  </div>
+  
+ <!-- Pregunta 81 -->
+<div class="question">
+    <label for="q81A">81. Estudiar los fenómenos del universo, aplicando estos conocimientos a las diversas actividades relacionadas con la utilización del espacio.</label><br />
+    <input type="radio" id="q81A" name="q81" value="A" />
+    <label for="q81A">Me gusta</label><br />
+    <input type="radio" id="q81B" name="q81" value="B" />
+    <label for="q81B">Me es indiferente</label><br />
+    <input type="radio" id="q81C" name="q81" value="C" />
+    <label for="q81C">No me gusta</label><br />
+    <input type="radio" id="q81D" name="q81" value="D" />
+    <label for="q81D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 82 -->
+  <div class="question">
+    <label for="q82A">82. Ser bailarín/a.</label><br />
+    <input type="radio" id="q82A" name="q82" value="A" />
+    <label for="q82A">Me gusta</label><br />
+    <input type="radio" id="q82B" name="q82" value="B" />
+    <label for="q82B">Me es indiferente</label><br />
+    <input type="radio" id="q82C" name="q82" value="C" />
+    <label for="q82C">No me gusta</label><br />
+    <input type="radio" id="q82D" name="q82" value="D" />
+    <label for="q82D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 83 -->
+  <div class="question">
+    <label for="q83A">83. Desarrollar un negocio inmobiliario (comprar, vender, alquilar propiedades) asesorando a los propietarios.</label><br />
+    <input type="radio" id="q83A" name="q83" value="A" />
+    <label for="q83A">Me gusta</label><br />
+    <input type="radio" id="q83B" name="q83" value="B" />
+    <label for="q83B">Me es indiferente</label><br />
+    <input type="radio" id="q83C" name="q83" value="C" />
+    <label for="q83C">No me gusta</label><br />
+    <input type="radio" id="q83D" name="q83" value="D" />
+    <label for="q83D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 84 -->
+  <div class="question">
+    <label for="q84A">84. Ser técnico deportivo.</label><br />
+    <input type="radio" id="q84A" name="q84" value="A" />
+    <label for="q84A">Me gusta</label><br />
+    <input type="radio" id="q84B" name="q84" value="B" />
+    <label for="q84B">Me es indiferente</label><br />
+    <input type="radio" id="q84C" name="q84" value="C" />
+    <label for="q84C">No me gusta</label><br />
+    <input type="radio" id="q84D" name="q84" value="D" />
+    <label for="q84D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 85 -->
+  <div class="question">
+    <label for="q85A">85. Analizar la historia de la música en sus diversos componentes (técnicas, métodos, autores).</label><br />
+    <input type="radio" id="q85A" name="q85" value="A" />
+    <label for="q85A">Me gusta</label><br />
+    <input type="radio" id="q85B" name="q85" value="B" />
+    <label for="q85B">Me es indiferente</label><br />
+    <input type="radio" id="q85C" name="q85" value="C" />
+    <label for="q85C">No me gusta</label><br />
+    <input type="radio" id="q85D" name="q85" value="D" />
+    <label for="q85D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 86 -->
+  <div class="question">
+    <label for="q86A">86. Trabajar como salvavidas.</label><br />
+    <input type="radio" id="q86A" name="q86" value="A" />
+    <label for="q86A">Me gusta</label><br />
+    <input type="radio" id="q86B" name="q86" value="B" />
+    <label for="q86B">Me es indiferente</label><br />
+    <input type="radio" id="q86C" name="q86" value="C" />
+    <label for="q86C">No me gusta</label><br />
+    <input type="radio" id="q86D" name="q86" value="D" />
+    <label for="q86D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 87 -->
+  <div class="question">
+    <label for="q87A">87. Diseñar instalaciones relacionadas con las comunicaciones (telefonía, radio, televisión, radar, etc.) en diversos campos (industria, defensa, control aéreo, etc.).</label><br />
+    <input type="radio" id="q87A" name="q87" value="A" />
+    <label for="q87A">Me gusta</label><br />
+    <input type="radio" id="q87B" name="q87" value="B" />
+    <label for="q87B">Me es indiferente</label><br />
+    <input type="radio" id="q87C" name="q87" value="C" />
+    <label for="q87C">No me gusta</label><br />
+    <input type="radio" id="q87D" name="q87" value="D" />
+    <label for="q87D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 88 -->
+  <div class="question">
+    <label for="q88A">88. Trabajar como profesor.</label><br />
+    <input type="radio" id="q88A" name="q88" value="A" />
+    <label for="q88A">Me gusta</label><br />
+    <input type="radio" id="q88B" name="q88" value="B" />
+    <label for="q88B">Me es indiferente</label><br />
+    <input type="radio" id="q88C" name="q88" value="C" />
+    <label for="q88C">No me gusta</label><br />
+    <input type="radio" id="q88D" name="q88" value="D" />
+    <label for="q88D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 89 -->
+  <div class="question">
+    <label for="q89A">89. Aplicar conocimientos profesionales para resolver conflictos laborales.</label><br />
+    <input type="radio" id="q89A" name="q89" value="A" />
+    <label for="q89A">Me gusta</label><br />
+    <input type="radio" id="q89B" name="q89" value="B" />
+    <label for="q89B">Me es indiferente</label><br />
+    <input type="radio" id="q89C" name="q89" value="C" />
+    <label for="q89C">No me gusta</label><br />
+    <input type="radio" id="q89D" name="q89" value="D" />
+    <label for="q89D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 90 -->
+  <div class="question">
+    <label for="q90A">90. Trabajar como técnico en artes plásticas y diseño.</label><br />
+    <input type="radio" id="q90A" name="q90" value="A" />
+    <label for="q90A">Me gusta</label><br />
+    <input type="radio" id="q90B" name="q90" value="B" />
+    <label for="q90B">Me es indiferente</label><br />
+    <input type="radio" id="q90C" name="q90" value="C" />
+    <label for="q90C">No me gusta</label><br />
+    <input type="radio" id="q90D" name="q90" value="D" />
+    <label for="q90D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 91 -->
+  <div class="question">
+    <label for="q91A">91. Realizar estudios sociales, utilizando encuestas, cuestionarios, etc.</label><br />
+    <input type="radio" id="q91A" name="q91" value="A" />
+    <label for="q91A">Me gusta</label><br />
+    <input type="radio" id="q91B" name="q91" value="B" />
+    <label for="q91B">Me es indiferente</label><br />
+    <input type="radio" id="q91C" name="q91" value="C" />
+    <label for="q91C">No me gusta</label><br />
+    <input type="radio" id="q91D" name="q91" value="D" />
+    <label for="q91D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 92 -->
+  <div class="question">
+    <label for="q92A">92. Trabajar como técnico en sonido.</label><br />
+    <input type="radio" id="q92A" name="q92" value="A" />
+    <label for="q92A">Me gusta</label><br />
+    <input type="radio" id="q92B" name="q92" value="B" />
+    <label for="q92B">Me es indiferente</label><br />
+    <input type="radio" id="q92C" name="q92" value="C" />
+    <label for="q92C">No me gusta</label><br />
+    <input type="radio" id="q92D" name="q92" value="D" />
+    <label for="q92D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 93 -->
+  <div class="question">
+    <label for="q93A">93. Tratar de aumentar la productividad de granjas, así como de explotaciones agrícolas.</label><br />
+    <input type="radio" id="q93A" name="q93" value="A" />
+    <label for="q93A">Me gusta</label><br />
+    <input type="radio" id="q93B" name="q93" value="B" />
+    <label for="q93B">Me es indiferente</label><br />
+    <input type="radio" id="q93C" name="q93" value="C" />
+    <label for="q93C">No me gusta</label><br />
+    <input type="radio" id="q93D" name="q93" value="D" />
+    <label for="q93D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 94 -->
+  <div class="question">
+    <label for="q94A">94. Investigar los fundamentos de la religión católica a través de diferentes medios (textos escritos, restos arqueológicos, tradiciones, etc.).</label><br />
+    <input type="radio" id="q94A" name="q94" value="A" />
+    <label for="q94A">Me gusta</label><br />
+    <input type="radio" id="q94B" name="q94" value="B" />
+    <label for="q94B">Me es indiferente</label><br />
+    <input type="radio" id="q94C" name="q94" value="C" />
+    <label for="q94C">No me gusta</label><br />
+    <input type="radio" id="q94D" name="q94" value="D" />
+    <label for="q94D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 95 -->
+  <div class="question">
+    <label for="q95A">95. Ser ingeniero agrónomo.</label><br />
+    <input type="radio" id="q95A" name="q95" value="A" />
+    <label for="q95A">Me gusta</label><br />
+    <input type="radio" id="q95B" name="q95" value="B" />
+    <label for="q95B">Me es indiferente</label><br />
+    <input type="radio" id="q95C" name="q95" value="C" />
+    <label for="q95C">No me gusta</label><br />
+    <input type="radio" id="q95D" name="q95" value="D" />
+    <label for="q95D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 96 -->
+  <div class="question">
+    <label for="q96A">96. Ejercer la profesión de trabajador social.</label><br />
+    <input type="radio" id="q96A" name="q96" value="A" />
+    <label for="q96A">Me gusta</label><br />
+    <input type="radio" id="q96B" name="q96" value="B" />
+    <label for="q96B">Me es indiferente</label><br />
+    <input type="radio" id="q96C" name="q96" value="C" />
+    <label for="q96C">No me gusta</label><br />
+    <input type="radio" id="q96D" name="q96" value="D" />
+    <label for="q96D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 97 -->
+  <div class="question">
+    <label for="q97A">97. Elaborar productos relacionados con la moda: tejido, ropa, joyería, bisutería, calzado, etc.</label><br />
+    <input type="radio" id="q97A" name="q97" value="A" />
+    <label for="q97A">Me gusta</label><br />
+    <input type="radio" id="q97B" name="q97" value="B" />
+    <label for="q97B">Me es indiferente</label><br />
+    <input type="radio" id="q97C" name="q97" value="C" />
+    <label for="q97C">No me gusta</label><br />
+    <input type="radio" id="q97D" name="q97" value="D" />
+    <label for="q97D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 98 -->
+  <div class="question">
+    <label for="q98A">98. Trabajar como masajista deportivo.</label><br />
+    <input type="radio" id="q98A" name="q98" value="A" />
+    <label for="q98A">Me gusta</label><br />
+    <input type="radio" id="q98B" name="q98" value="B" />
+    <label for="q98B">Me es indiferente</label><br />
+    <input type="radio" id="q98C" name="q98" value="C" />
+    <label for="q98C">No me gusta</label><br />
+    <input type="radio" id="q98D" name="q98" value="D" />
+    <label for="q98D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 99 -->
+  <div class="question">
+    <label for="q99A">99. Realizar tareas de protección del medio ambiente en bosques, jardines, etc.</label><br />
+    <input type="radio" id="q99A" name="q99" value="A" />
+    <label for="q99A">Me gusta</label><br />
+    <input type="radio" id="q99B" name="q99" value="B" />
+    <label for="q99B">Me es indiferente</label><br />
+    <input type="radio" id="q99C" name="q99" value="C" />
+    <label for="q99C">No me gusta</label><br />
+    <input type="radio" id="q99D" name="q99" value="D" />
+    <label for="q99D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 100 -->
+  <div class="question">
+    <label for="q100A">100. Ser abogado.</label><br />
+    <input type="radio" id="q100A" name="q100" value="A" />
+    <label for="q100A">Me gusta</label><br />
+    <input type="radio" id="q100B" name="q100" value="B" />
+    <label for="q100B">Me es indiferente</label><br />
+    <input type="radio" id="q100C" name="q100" value="C" />
+    <label for="q100C">No me gusta</label><br />
+    <input type="radio" id="q100D" name="q100" value="D" />
+    <label for="q100D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 101 -->
+  <div class="question">
+    <label for="q101A">101. Enseñar educación física, contribuyendo a la mejora de las capacidades físicas de los alumnos (educación inicial, primaria), así como a su desarrollo personal.</label><br />
+    <input type="radio" id="q101A" name="q101" value="A" />
+    <label for="q101A">Me gusta</label><br />
+    <input type="radio" id="q101B" name="q101" value="B" />
+    <label for="q101B">Me es indiferente</label><br />
+    <input type="radio" id="q101C" name="q101" value="C" />
+    <label for="q101C">No me gusta</label><br />
+    <input type="radio" id="q101D" name="q101" value="D" />
+    <label for="q101D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 102 -->
+  <div class="question">
+    <label for="q102A">102. Trabajar como especialista en Relaciones Laborales.</label><br />
+    <input type="radio" id="q102A" name="q102" value="A" />
+    <label for="q102A">Me gusta</label><br />
+    <input type="radio" id="q102B" name="q102" value="B" />
+    <label for="q102B">Me es indiferente</label><br />
+    <input type="radio" id="q102C" name="q102" value="C" />
+    <label for="q102C">No me gusta</label><br />
+    <input type="radio" id="q102D" name="q102" value="D" />
+    <label for="q102D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 103 -->
+  <div class="question">
+    <label for="q103A">103. Diseñar campañas publicitarias para dar a conocer un producto, así como mensajes institucionales diversos (sanidad, tráfico, energía).</label><br />
+    <input type="radio" id="q103A" name="q103" value="A" />
+    <label for="q103A">Me gusta</label><br />
+    <input type="radio" id="q103B" name="q103" value="B" />
+    <label for="q103B">Me es indiferente</label><br />
+    <input type="radio" id="q103C" name="q103" value="C" />
+    <label for="q103C">No me gusta</label><br />
+    <input type="radio" id="q103D" name="q103" value="D" />
+    <label for="q103D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 104 -->
+  <div class="question">
+    <label for="q104A">104. Trabajar como fisioterapeuta.</label><br />
+    <input type="radio" id="q104A" name="q104" value="A" />
+    <label for="q104A">Me gusta</label><br />
+    <input type="radio" id="q104B" name="q104" value="B" />
+    <label for="q104B">Me es indiferente</label><br />
+    <input type="radio" id="q104C" name="q104" value="C" />
+    <label for="q104C">No me gusta</label><br />
+    <input type="radio" id="q104D" name="q104" value="D" />
+    <label for="q104D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 105 -->
+  <div class="question">
+    <label for="q105A">105. Realizar las tareas relacionadas con la ordenación y la seguridad del tráfico aéreo en aeropuertos civiles.</label><br />
+    <input type="radio" id="q105A" name="q105" value="A" />
+    <label for="q105A">Me gusta</label><br />
+    <input type="radio" id="q105B" name="q105" value="B" />
+    <label for="q105B">Me es indiferente</label><br />
+    <input type="radio" id="q105C" name="q105" value="C" />
+    <label for="q105C">No me gusta</label><br />
+    <input type="radio" id="q105D" name="q105" value="D" />
+    <label for="q105D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 106 -->
+  <div class="question">
+    <label for="q106A">106. Ser ceramista.</label><br />
+    <input type="radio" id="q106A" name="q106" value="A" />
+    <label for="q106A">Me gusta</label><br />
+    <input type="radio" id="q106B" name="q106" value="B" />
+    <label for="q106B">Me es indiferente</label><br />
+    <input type="radio" id="q106C" name="q106" value="C" />
+    <label for="q106C">No me gusta</label><br />
+    <input type="radio" id="q106D" name="q106" value="D" />
+    <label for="q106D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 107 -->
+  <div class="question">
+    <label for="q107A">107. Realizar proyectos para la construcción de obras civiles (puentes, carreteras, aeropuertos, puertos, vías férreas), supervisando la construcción de dichas obras.</label><br />
+    <input type="radio" id="q107A" name="q107" value="A" />
+    <label for="q107A">Me gusta</label><br />
+    <input type="radio" id="q107B" name="q107" value="B" />
+    <label for="q107B">Me es indiferente</label><br />
+    <input type="radio" id="q107C" name="q107" value="C" />
+    <label for="q107C">No me gusta</label><br />
+    <input type="radio" id="q107D" name="q107" value="D" />
+    <label for="q107D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 108 -->
+  <div class="question">
+    <label for="q108A">108. Ser diplomático (embajador).</label><br />
+    <input type="radio" id="q108A" name="q108" value="A" />
+    <label for="q108A">Me gusta</label><br />
+    <input type="radio" id="q108B" name="q108" value="B" />
+    <label for="q108B">Me es indiferente</label><br />
+    <input type="radio" id="q108C" name="q108" value="C" />
+    <label for="q108C">No me gusta</label><br />
+    <input type="radio" id="q108D" name="q108" value="D" />
+    <label for="q108D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 109 -->
+  <div class="question">
+    <label for="q109A">109. Aplicar pruebas psicológicas para conocer diversas características de los alumnos (inteligencia, aptitudes, personalidad) resolviendo problemas personales, de aprendizaje, así como de adaptación a la escuela.</label><br />
+    <input type="radio" id="q109A" name="q109" value="A" />
+    <label for="q109A">Me gusta</label><br />
+    <input type="radio" id="q109B" name="q109" value="B" />
+    <label for="q109B">Me es indiferente</label><br />
+    <input type="radio" id="q109C" name="q109" value="C" />
+    <label for="q109C">No me gusta</label><br />
+    <input type="radio" id="q109D" name="q109" value="D" />
+    <label for="q109D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 110 -->
+  <div class="question">
+    <label for="q110A">110. Ser ingeniero de telecomunicaciones (diseñar sistemas, redes, difusión de radio, televisión, redes telefónicas).</label><br />
+    <input type="radio" id="q110A" name="q110" value="A" />
+    <label for="q110A">Me gusta</label><br />
+    <input type="radio" id="q110B" name="q110" value="B" />
+    <label for="q110B">Me es indiferente</label><br />
+    <input type="radio" id="q110C" name="q110" value="C" />
+    <label for="q110C">No me gusta</label><br />
+    <input type="radio" id="q110D" name="q110" value="D" />
+    <label for="q110D">No conozco</label><br />
+  </div>
+  
+<!-- Pregunta 111 -->
+<div class="question">
+    <label for="q111A">111. Elaborar programas turísticos para guiar a grupos de visitantes, dominando al menos dos idiomas extranjeros para comunicarse con ellos.</label><br />
+    <input type="radio" id="q111A" name="q111" value="A" />
+    <label for="q111A">Me gusta</label><br />
+    <input type="radio" id="q111B" name="q111" value="B" />
+    <label for="q111B">Me es indiferente</label><br />
+    <input type="radio" id="q111C" name="q111" value="C" />
+    <label for="q111C">No me gusta</label><br />
+    <input type="radio" id="q111D" name="q111" value="D" />
+    <label for="q111D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 112 -->
+  <div class="question">
+    <label for="q112A">112. Trabajar como diplomado en Enfermería.</label><br />
+    <input type="radio" id="q112A" name="q112" value="A" />
+    <label for="q112A">Me gusta</label><br />
+    <input type="radio" id="q112B" name="q112" value="B" />
+    <label for="q112B">Me es indiferente</label><br />
+    <input type="radio" id="q112C" name="q112" value="C" />
+    <label for="q112C">No me gusta</label><br />
+    <input type="radio" id="q112D" name="q112" value="D" />
+    <label for="q112D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 113 -->
+  <div class="question">
+    <label for="q113A">113. Colaborar con personas para solucionar problemas de diferente tipo (personal, social, adaptación, médico, atención al adulto mayor, etc.).</label><br />
+    <input type="radio" id="q113A" name="q113" value="A" />
+    <label for="q113A">Me gusta</label><br />
+    <input type="radio" id="q113B" name="q113" value="B" />
+    <label for="q113B">Me es indiferente</label><br />
+    <input type="radio" id="q113C" name="q113" value="C" />
+    <label for="q113C">No me gusta</label><br />
+    <input type="radio" id="q113D" name="q113" value="D" />
+    <label for="q113D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 114 -->
+  <div class="question">
+    <label for="q114A">114. Ser miembro de la Policía Nacional del Perú.</label><br />
+    <input type="radio" id="q114A" name="q114" value="A" />
+    <label for="q114A">Me gusta</label><br />
+    <input type="radio" id="q114B" name="q114" value="B" />
+    <label for="q114B">Me es indiferente</label><br />
+    <input type="radio" id="q114C" name="q114" value="C" />
+    <label for="q114C">No me gusta</label><br />
+    <input type="radio" id="q114D" name="q114" value="D" />
+    <label for="q114D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 115 -->
+  <div class="question">
+    <label for="q115A">115. Aplicar conocimientos sobre las distintas manifestaciones artísticas dando clases de arte, trabajando en galerías de arte.</label><br />
+    <input type="radio" id="q115A" name="q115" value="A" />
+    <label for="q115A">Me gusta</label><br />
+    <input type="radio" id="q115B" name="q115" value="B" />
+    <label for="q115B">Me es indiferente</label><br />
+    <input type="radio" id="q115C" name="q115" value="C" />
+    <label for="q115C">No me gusta</label><br />
+    <input type="radio" id="q115D" name="q115" value="D" />
+    <label for="q115D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 116 -->
+  <div class="question">
+    <label for="q116A">116. Trabajar como ingeniero agrónomo.</label><br />
+    <input type="radio" id="q116A" name="q116" value="A" />
+    <label for="q116A">Me gusta</label><br />
+    <input type="radio" id="q116B" name="q116" value="B" />
+    <label for="q116B">Me es indiferente</label><br />
+    <input type="radio" id="q116C" name="q116" value="C" />
+    <label for="q116C">No me gusta</label><br />
+    <input type="radio" id="q116D" name="q116" value="D" />
+    <label for="q116D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 117 -->
+  <div class="question">
+    <label for="q117A">117. Emplear técnicas de expresión gráfica para realizar ilustraciones en diversos tipos de libros (infantiles, fantásticos, científicos).</label><br />
+    <input type="radio" id="q117A" name="q117" value="A" />
+    <label for="q117A">Me gusta</label><br />
+    <input type="radio" id="q117B" name="q117" value="B" />
+    <label for="q117B">Me es indiferente</label><br />
+    <input type="radio" id="q117C" name="q117" value="C" />
+    <label for="q117C">No me gusta</label><br />
+    <input type="radio" id="q117D" name="q117" value="D" />
+    <label for="q117D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 118 -->
+  <div class="question">
+    <label for="q118A">118. Ser asesor inmobiliario.</label><br />
+    <input type="radio" id="q118A" name="q118" value="A" />
+    <label for="q118A">Me gusta</label><br />
+    <input type="radio" id="q118B" name="q118" value="B" />
+    <label for="q118B">Me es indiferente</label><br />
+    <input type="radio" id="q118C" name="q118" value="C" />
+    <label for="q118C">No me gusta</label><br />
+    <input type="radio" id="q118D" name="q118" value="D" />
+    <label for="q118D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 119 -->
+  <div class="question">
+    <label for="q119A">119. Representar al propio país en otros países desempeñando la función de embajador.</label><br />
+    <input type="radio" id="q119A" name="q119" value="A" />
+    <label for="q119A">Me gusta</label><br />
+    <input type="radio" id="q119B" name="q119" value="B" />
+    <label for="q119B">Me es indiferente</label><br />
+    <input type="radio" id="q119C" name="q119" value="C" />
+    <label for="q119C">No me gusta</label><br />
+    <input type="radio" id="q119D" name="q119" value="D" />
+    <label for="q119D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 120 -->
+  <div class="question">
+    <label for="q120A">120. Ser ingeniero civil.</label><br />
+    <input type="radio" id="q120A" name="q120" value="A" />
+    <label for="q120A">Me gusta</label><br />
+    <input type="radio" id="q120B" name="q120" value="B" />
+    <label for="q120B">Me es indiferente</label><br />
+    <input type="radio" id="q120C" name="q120" value="C" />
+    <label for="q120C">No me gusta</label><br />
+    <input type="radio" id="q120D" name="q120" value="D" />
+    <label for="q120D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 121 -->
+  <div class="question">
+    <label for="q121A">121. Desarrollar temas deportivos en equipos, colegios, así como en diversas instituciones.</label><br />
+    <input type="radio" id="q121A" name="q121" value="A" />
+    <label for="q121A">Me gusta</label><br />
+    <input type="radio" id="q121B" name="q121" value="B" />
+    <label for="q121B">Me es indiferente</label><br />
+    <input type="radio" id="q121C" name="q121" value="C" />
+    <label for="q121C">No me gusta</label><br />
+    <input type="radio" id="q121D" name="q121" value="D" />
+    <label for="q121D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 122 -->
+  <div class="question">
+    <label for="q122A">122. Ser actor profesional.</label><br />
+    <input type="radio" id="q122A" name="q122" value="A" />
+    <label for="q122A">Me gusta</label><br />
+    <input type="radio" id="q122B" name="q122" value="B" />
+    <label for="q122B">Me es indiferente</label><br />
+    <input type="radio" id="q122C" name="q122" value="C" />
+    <label for="q122C">No me gusta</label><br />
+    <input type="radio" id="q122D" name="q122" value="D" />
+    <label for="q122D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 123 -->
+  <div class="question">
+    <label for="q123A">123. Investigar las propiedades de la materia para aportar a la creación de productos que se utilizan en la medicina, la agricultura, la alimentación, así como otras industrias.</label><br />
+    <input type="radio" id="q123A" name="q123" value="A" />
+    <label for="q123A">Me gusta</label><br />
+    <input type="radio" id="q123B" name="q123" value="B" />
+    <label for="q123B">Me es indiferente</label><br />
+    <input type="radio" id="q123C" name="q123" value="C" />
+    <label for="q123C">No me gusta</label><br />
+    <input type="radio" id="q123D" name="q123" value="D" />
+    <label for="q123D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 124 -->
+  <div class="question">
+    <label for="q124A">124. Ser diseñador especialista en moda.</label><br />
+    <input type="radio" id="q124A" name="q124" value="A" />
+    <label for="q124A">Me gusta</label><br />
+    <input type="radio" id="q124B" name="q124" value="B" />
+    <label for="q124B">Me es indiferente</label><br />
+    <input type="radio" id="q124C" name="q124" value="C" />
+    <label for="q124C">No me gusta</label><br />
+    <input type="radio" id="q124D" name="q124" value="D" />
+    <label for="q124D">No conozco</label><br />
+  </div>
+<!-- Pregunta 125 -->
+<div class="question">
+    <label for="q125A">125. Conocer de manera integral las enfermedades que afectan a los animales, cuidando una mejor reproducción de los mismos.</label><br />
+    <input type="radio" id="q125A" name="q125" value="A" />
+    <label for="q125A">Me gusta</label><br />
+    <input type="radio" id="q125B" name="q125" value="B" />
+    <label for="q125B">Me es indiferente</label><br />
+    <input type="radio" id="q125C" name="q125" value="C" />
+    <label for="q125C">No me gusta</label><br />
+    <input type="radio" id="q125D" name="q125" value="D" />
+    <label for="q125D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 126 -->
+  <div class="question">
+    <label for="q126A">126. Ejercer la profesión de sociólogo.</label><br />
+    <input type="radio" id="q126A" name="q126" value="A" />
+    <label for="q126A">Me gusta</label><br />
+    <input type="radio" id="q126B" name="q126" value="B" />
+    <label for="q126B">Me es indiferente</label><br />
+    <input type="radio" id="q126C" name="q126" value="C" />
+    <label for="q126C">No me gusta</label><br />
+    <input type="radio" id="q126D" name="q126" value="D" />
+    <label for="q126D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 127 -->
+  <div class="question">
+    <label for="q127A">127. Crear productos gastronómicos para ofrecerlos a los clientes.</label><br />
+    <input type="radio" id="q127A" name="q127" value="A" />
+    <label for="q127A">Me gusta</label><br />
+    <input type="radio" id="q127B" name="q127" value="B" />
+    <label for="q127B">Me es indiferente</label><br />
+    <input type="radio" id="q127C" name="q127" value="C" />
+    <label for="q127C">No me gusta</label><br />
+    <input type="radio" id="q127D" name="q127" value="D" />
+    <label for="q127D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 128 -->
+  <div class="question">
+    <label for="q128A">128. Ser arquitecto.</label><br />
+    <input type="radio" id="q128A" name="q128" value="A" />
+    <label for="q128A">Me gusta</label><br />
+    <input type="radio" id="q128B" name="q128" value="B" />
+    <label for="q128B">Me es indiferente</label><br />
+    <input type="radio" id="q128C" name="q128" value="C" />
+    <label for="q128C">No me gusta</label><br />
+    <input type="radio" id="q128D" name="q128" value="D" />
+    <label for="q128D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 129 -->
+  <div class="question">
+    <label for="q129A">129. Entrenar a deportistas para perfeccionar sus aptitudes, mejorando la práctica del deporte.</label><br />
+    <input type="radio" id="q129A" name="q129" value="A" />
+    <label for="q129A">Me gusta</label><br />
+    <input type="radio" id="q129B" name="q129" value="B" />
+    <label for="q129B">Me es indiferente</label><br />
+    <input type="radio" id="q129C" name="q129" value="C" />
+    <label for="q129C">No me gusta</label><br />
+    <input type="radio" id="q129D" name="q129" value="D" />
+    <label for="q129D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 130 -->
+  <div class="question">
+    <label for="q130A">130. Ser químico.</label><br />
+    <input type="radio" id="q130A" name="q130" value="A" />
+    <label for="q130A">Me gusta</label><br />
+    <input type="radio" id="q130B" name="q130" value="B" />
+    <label for="q130B">Me es indiferente</label><br />
+    <input type="radio" id="q130C" name="q130" value="C" />
+    <label for="q130C">No me gusta</label><br />
+    <input type="radio" id="q130D" name="q130" value="D" />
+    <label for="q130D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 131 -->
+  <div class="question">
+    <label for="q131A">131. Crear piezas de cerámica, investigando técnicas relativas a este trabajo.</label><br />
+    <input type="radio" id="q131A" name="q131" value="A" />
+    <label for="q131A">Me gusta</label><br />
+    <input type="radio" id="q131B" name="q131" value="B" />
+    <label for="q131B">Me es indiferente</label><br />
+    <input type="radio" id="q131C" name="q131" value="C" />
+    <label for="q131C">No me gusta</label><br />
+    <input type="radio" id="q131D" name="q131" value="D" />
+    <label for="q131D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 132 -->
+  <div class="question">
+    <label for="q132A">132. Ser farmacéutico.</label><br />
+    <input type="radio" id="q132A" name="q132" value="A" />
+    <label for="q132A">Me gusta</label><br />
+    <input type="radio" id="q132B" name="q132" value="B" />
+    <label for="q132B">Me es indiferente</label><br />
+    <input type="radio" id="q132C" name="q132" value="C" />
+    <label for="q132C">No me gusta</label><br />
+    <input type="radio" id="q132D" name="q132" value="D" />
+    <label for="q132D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 133 -->
+  <div class="question">
+    <label for="q133A">133. Obtener imágenes por medio de diversos medios (fotografía, video, cámara cinematográfica) presentándolas en cualquier soporte.</label><br />
+    <input type="radio" id="q133A" name="q133" value="A" />
+    <label for="q133A">Me gusta</label><br />
+    <input type="radio" id="q133B" name="q133" value="B" />
+    <label for="q133B">Me es indiferente</label><br />
+    <input type="radio" id="q133C" name="q133" value="C" />
+    <label for="q133C">No me gusta</label><br />
+    <input type="radio" id="q133D" name="q133" value="D" />
+    <label for="q133D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 134 -->
+  <div class="question">
+    <label for="q134A">134. Trabajar como maestro en Educación Especial.</label><br />
+    <input type="radio" id="q134A" name="q134" value="A" />
+    <label for="q134A">Me gusta</label><br />
+    <input type="radio" id="q134B" name="q134" value="B" />
+    <label for="q134B">Me es indiferente</label><br />
+    <input type="radio" id="q134C" name="q134" value="C" />
+    <label for="q134C">No me gusta</label><br />
+    <input type="radio" id="q134D" name="q134" value="D" />
+    <label for="q134D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 135 -->
+  <div class="question">
+    <label for="q135A">135. Aplicar los conocimientos sobre la naturaleza humana para establecer métodos científicos que permitan el diagnóstico clínico así como el tratamiento de las enfermedades.</label><br />
+    <input type="radio" id="q135A" name="q135" value="A" />
+    <label for="q135A">Me gusta</label><br />
+    <input type="radio" id="q135B" name="q135" value="B" />
+    <label for="q135B">Me es indiferente</label><br />
+    <input type="radio" id="q135C" name="q135" value="C" />
+    <label for="q135C">No me gusta</label><br />
+    <input type="radio" id="q135D" name="q135" value="D" />
+    <label for="q135D">No conozco</label><br />
+  </div>
+
+  <!-- Pregunta 136 -->
+<div class="question">
+    <label for="q136A">136. Trabajar como tripulante en una cabina de pasajeros.</label><br />
+    <input type="radio" id="q136A" name="q136" value="A" />
+    <label for="q136A">Me gusta</label><br />
+    <input type="radio" id="q136B" name="q136" value="B" />
+    <label for="q136B">Me es indiferente</label><br />
+    <input type="radio" id="q136C" name="q136" value="C" />
+    <label for="q136C">No me gusta</label><br />
+    <input type="radio" id="q136D" name="q136" value="D" />
+    <label for="q136D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 137 -->
+  <div class="question">
+    <label for="q137A">137. Asesorar a la Policía Nacional en temas referidos a comportamientos criminales tomando en cuenta su medio social.</label><br />
+    <input type="radio" id="q137A" name="q137" value="A" />
+    <label for="q137A">Me gusta</label><br />
+    <input type="radio" id="q137B" name="q137" value="B" />
+    <label for="q137B">Me es indiferente</label><br />
+    <input type="radio" id="q137C" name="q137" value="C" />
+    <label for="q137C">No me gusta</label><br />
+    <input type="radio" id="q137D" name="q137" value="D" />
+    <label for="q137D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 138 -->
+  <div class="question">
+    <label for="q138A">138. Trabajar como técnico aplicando conocimientos informáticos.</label><br />
+    <input type="radio" id="q138A" name="q138" value="A" />
+    <label for="q138A">Me gusta</label><br />
+    <input type="radio" id="q138B" name="q138" value="B" />
+    <label for="q138B">Me es indiferente</label><br />
+    <input type="radio" id="q138C" name="q138" value="C" />
+    <label for="q138C">No me gusta</label><br />
+    <input type="radio" id="q138D" name="q138" value="D" />
+    <label for="q138D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 139 -->
+  <div class="question">
+    <label for="q139A">139. Organizar todo lo necesario para recibir a los clientes de un hotel supervisando los diversos servicios que se ofrecen (recepción, atención, seguridad, etc.).</label><br />
+    <input type="radio" id="q139A" name="q139" value="A" />
+    <label for="q139A">Me gusta</label><br />
+    <input type="radio" id="q139B" name="q139" value="B" />
+    <label for="q139B">Me es indiferente</label><br />
+    <input type="radio" id="q139C" name="q139" value="C" />
+    <label for="q139C">No me gusta</label><br />
+    <input type="radio" id="q139D" name="q139" value="D" />
+    <label for="q139D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 140 -->
+  <div class="question">
+    <label for="q140A">140. Trabajar como educador social buscando la integración de personas en situación de marginación.</label><br />
+    <input type="radio" id="q140A" name="q140" value="A" />
+    <label for="q140A">Me gusta</label><br />
+    <input type="radio" id="q140B" name="q140" value="B" />
+    <label for="q140B">Me es indiferente</label><br />
+    <input type="radio" id="q140C" name="q140" value="C" />
+    <label for="q140C">No me gusta</label><br />
+    <input type="radio" id="q140D" name="q140" value="D" />
+    <label for="q140D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 141 -->
+  <div class="question">
+    <label for="q141A">141. Participar en el diseño de aplicaciones de la informática en diversos campos de la vida cotidiana, realizando la programación de acuerdo a las especificaciones establecidas.</label><br />
+    <input type="radio" id="q141A" name="q141" value="A" />
+    <label for="q141A">Me gusta</label><br />
+    <input type="radio" id="q141B" name="q141" value="B" />
+    <label for="q141B">Me es indiferente</label><br />
+    <input type="radio" id="q141C" name="q141" value="C" />
+    <label for="q141C">No me gusta</label><br />
+    <input type="radio" id="q141D" name="q141" value="D" />
+    <label for="q141D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 142 -->
+  <div class="question">
+    <label for="q142A">142. Trabajar como licenciado en Ingeniería Ambiental.</label><br />
+    <input type="radio" id="q142A" name="q142" value="A" />
+    <label for="q142A">Me gusta</label><br />
+    <input type="radio" id="q142B" name="q142" value="B" />
+    <label for="q142B">Me es indiferente</label><br />
+    <input type="radio" id="q142C" name="q142" value="C" />
+    <label for="q142C">No me gusta</label><br />
+    <input type="radio" id="q142D" name="q142" value="D" />
+    <label for="q142D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 143 -->
+  <div class="question">
+    <label for="q143A">143. Aplicar los conocimientos de medicina al tratamiento de enfermedades dentales.</label><br />
+    <input type="radio" id="q143A" name="q143" value="A" />
+    <label for="q143A">Me gusta</label><br />
+    <input type="radio" id="q143B" name="q143" value="B" />
+    <label for="q143B">Me es indiferente</label><br />
+    <input type="radio" id="q143C" name="q143" value="C" />
+    <label for="q143C">No me gusta</label><br />
+    <input type="radio" id="q143D" name="q143" value="D" />
+    <label for="q143D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 144 -->
+  <div class="question">
+    <label for="q144A">144. Ser técnico de imagen: conocimientos sobre fotografía, iluminación de espacios, etc.</label><br />
+    <input type="radio" id="q144A" name="q144" value="A" />
+    <label for="q144A">Me gusta</label><br />
+    <input type="radio" id="q144B" name="q144" value="B" />
+    <label for="q144B">Me es indiferente</label><br />
+    <input type="radio" id="q144C" name="q144" value="C" />
+    <label for="q144C">No me gusta</label><br />
+    <input type="radio" id="q144D" name="q144" value="D" />
+    <label for="q144D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 145 -->
+  <div class="question">
+    <label for="q145A">145. Realizar investigaciones sobre aspectos relacionados con comportamientos delictivos para informar a personal especializado (jueces, policía).</label><br />
+    <input type="radio" id="q145A" name="q145" value="A" />
+    <label for="q145A">Me gusta</label><br />
+    <input type="radio" id="q145B" name="q145" value="B" />
+    <label for="q145B">Me es indiferente</label><br />
+    <input type="radio" id="q145C" name="q145" value="C" />
+    <label for="q145C">No me gusta</label><br />
+    <input type="radio" id="q145D" name="q145" value="D" />
+    <label for="q145D">No conozco</label><br />
+  </div>
+  
+<!-- Pregunta 146 -->
+<div class="question">
+    <label for="q146A">146. Ejercer la profesión de filólogo: estudiar textos.</label><br />
+    <input type="radio" id="q146A" name="q146" value="A" />
+    <label for="q146A">Me gusta</label><br />
+    <input type="radio" id="q146B" name="q146" value="B" />
+    <label for="q146B">Me es indiferente</label><br />
+    <input type="radio" id="q146C" name="q146" value="C" />
+    <label for="q146C">No me gusta</label><br />
+    <input type="radio" id="q146D" name="q146" value="D" />
+    <label for="q146D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 147 -->
+  <div class="question">
+    <label for="q147A">147. Dirigir a personas en recorridos por zonas de montañas (a pie, en bicicleta, a caballo), en condiciones de seguridad.</label><br />
+    <input type="radio" id="q147A" name="q147" value="A" />
+    <label for="q147A">Me gusta</label><br />
+    <input type="radio" id="q147B" name="q147" value="B" />
+    <label for="q147B">Me es indiferente</label><br />
+    <input type="radio" id="q147C" name="q147" value="C" />
+    <label for="q147C">No me gusta</label><br />
+    <input type="radio" id="q147D" name="q147" value="D" />
+    <label for="q147D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 148 -->
+  <div class="question">
+    <label for="q148A">148. Ser biólogo.</label><br />
+    <input type="radio" id="q148A" name="q148" value="A" />
+    <label for="q148A">Me gusta</label><br />
+    <input type="radio" id="q148B" name="q148" value="B" />
+    <label for="q148B">Me es indiferente</label><br />
+    <input type="radio" id="q148C" name="q148" value="C" />
+    <label for="q148C">No me gusta</label><br />
+    <input type="radio" id="q148D" name="q148" value="D" />
+    <label for="q148D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 149 -->
+  <div class="question">
+    <label for="q149A">149. Manejar los sistemas informáticos que sirven de base para la gestión de una empresa.</label><br />
+    <input type="radio" id="q149A" name="q149" value="A" />
+    <label for="q149A">Me gusta</label><br />
+    <input type="radio" id="q149B" name="q149" value="B" />
+    <label for="q149B">Me es indiferente</label><br />
+    <input type="radio" id="q149C" name="q149" value="C" />
+    <label for="q149C">No me gusta</label><br />
+    <input type="radio" id="q149D" name="q149" value="D" />
+    <label for="q149D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 150 -->
+  <div class="question">
+    <label for="q150A">150. Ser periodista.</label><br />
+    <input type="radio" id="q150A" name="q150" value="A" />
+    <label for="q150A">Me gusta</label><br />
+    <input type="radio" id="q150B" name="q150" value="B" />
+    <label for="q150B">Me es indiferente</label><br />
+    <input type="radio" id="q150C" name="q150" value="C" />
+    <label for="q150C">No me gusta</label><br />
+    <input type="radio" id="q150D" name="q150" value="D" />
+    <label for="q150D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 151 -->
+  <div class="question">
+    <label for="q151A">151. Enseñar a realizar un deporte determinado, procurando el perfeccionamiento del mismo.</label><br />
+    <input type="radio" id="q151A" name="q151" value="A" />
+    <label for="q151A">Me gusta</label><br />
+    <input type="radio" id="q151B" name="q151" value="B" />
+    <label for="q151B">Me es indiferente</label><br />
+    <input type="radio" id="q151C" name="q151" value="C" />
+    <label for="q151C">No me gusta</label><br />
+    <input type="radio" id="q151D" name="q151" value="D" />
+    <label for="q151D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 152 -->
+  <div class="question">
+    <label for="q152A">152. Ser maestro de obra.</label><br />
+    <input type="radio" id="q152A" name="q152" value="A" />
+    <label for="q152A">Me gusta</label><br />
+    <input type="radio" id="q152B" name="q152" value="B" />
+    <label for="q152B">Me es indiferente</label><br />
+    <input type="radio" id="q152C" name="q152" value="C" />
+    <label for="q152C">No me gusta</label><br />
+    <input type="radio" id="q152D" name="q152" value="D" />
+    <label for="q152D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 153 -->
+  <div class="question">
+    <label for="q153A">153. Realizar los planes establecidos para la comercialización de productos en un establecimiento comercial.</label><br />
+    <input type="radio" id="q153A" name="q153" value="A" />
+    <label for="q153A">Me gusta</label><br />
+    <input type="radio" id="q153B" name="q153" value="B" />
+    <label for="q153B">Me es indiferente</label><br />
+    <input type="radio" id="q153C" name="q153" value="C" />
+    <label for="q153C">No me gusta</label><br />
+    <input type="radio" id="q153D" name="q153" value="D" />
+    <label for="q153D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 154 -->
+  <div class="question">
+    <label for="q154A">154. Trabajar como graduado en multimedia: diseño de páginas webs, diseño de interfaces, diseño 2D, 3D, etc.</label><br />
+    <input type="radio" id="q154A" name="q154" value="A" />
+    <label for="q154A">Me gusta</label><br />
+    <input type="radio" id="q154B" name="q154" value="B" />
+    <label for="q154B">Me es indiferente</label><br />
+    <input type="radio" id="q154C" name="q154" value="C" />
+    <label for="q154C">No me gusta</label><br />
+    <input type="radio" id="q154D" name="q154" value="D" />
+    <label for="q154D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 155 -->
+  <div class="question">
+    <label for="q155A">155. Actuar en representaciones (teatro, cine, televisión), interpretando un personaje.</label><br />
+    <input type="radio" id="q155A" name="q155" value="A" />
+    <label for="q155A">Me gusta</label><br />
+    <input type="radio" id="q155B" name="q155" value="B" />
+    <label for="q155B">Me es indiferente</label><br />
+    <input type="radio" id="q155C" name="q155" value="C" />
+    <label for="q155C">No me gusta</label><br />
+    <input type="radio" id="q155D" name="q155" value="D" />
+    <label for="q155D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 156 -->
+  <div class="question">
+    <label for="q156A">156. Ser entrenador deportivo.</label><br />
+    <input type="radio" id="q156A" name="q156" value="A" />
+    <label for="q156A">Me gusta</label><br />
+    <input type="radio" id="q156B" name="q156" value="B" />
+    <label for="q156B">Me es indiferente</label><br />
+    <input type="radio" id="q156C" name="q156" value="C" />
+    <label for="q156C">No me gusta</label><br />
+    <input type="radio" id="q156D" name="q156" value="D" />
+    <label for="q156D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 157 -->
+  <div class="question">
+    <label for="q157A">157. Estudiar los procesos de los medios audiovisuales, identificando los elementos que intervienen en ellos.</label><br />
+    <input type="radio" id="q157A" name="q157" value="A" />
+    <label for="q157A">Me gusta</label><br />
+    <input type="radio" id="q157B" name="q157" value="B" />
+    <label for="q157B">Me es indiferente</label><br />
+    <input type="radio" id="q157C" name="q157" value="C" />
+    <label for="q157C">No me gusta</label><br />
+    <input type="radio" id="q157D" name="q157" value="D" />
+    <label for="q157D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 158 -->
+  <div class="question">
+    <label for="q158A">158. Ser odontólogo (dentista).</label><br />
+    <input type="radio" id="q158A" name="q158" value="A" />
+    <label for="q158A">Me gusta</label><br />
+    <input type="radio" id="q158B" name="q158" value="B" />
+    <label for="q158B">Me es indiferente</label><br />
+    <input type="radio" id="q158C" name="q158" value="C" />
+    <label for="q158C">No me gusta</label><br />
+    <input type="radio" id="q158D" name="q158" value="D" />
+    <label for="q158D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 159 -->
+  <div class="question">
+    <label for="q159A">159. Traducir e interpretar textos aplicando conocimientos diversos (lingüísticos, teóricos, prácticos), así como los aspectos culturales propios de la lengua en que están escritos.</label><br />
+    <input type="radio" id="q159A" name="q159" value="A" />
+    <label for="q159A">Me gusta</label><br />
+    <input type="radio" id="q159B" name="q159" value="B" />
+    <label for="q159B">Me es indiferente</label><br />
+    <input type="radio" id="q159C" name="q159" value="C" />
+    <label for="q159C">No me gusta</label><br />
+    <input type="radio" id="q159D" name="q159" value="D" />
+    <label for="q159D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 160 -->
+  <div class="question">
+    <label for="q160A">160. Ser director - realizador de medios audiovisuales (cine, televisión, radio).</label><br />
+    <input type="radio" id="q160A" name="q160" value="A" />
+    <label for="q160A">Me gusta</label><br />
+    <input type="radio" id="q160B" name="q160" value="B" />
+    <label for="q160B">Me es indiferente</label><br />
+    <input type="radio" id="q160C" name="q160" value="C" />
+    <label for="q160C">No me gusta</label><br />
+    <input type="radio" id="q160D" name="q160" value="D" />
+    <label for="q160D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 161 -->
+  <div class="question">
+    <label for="q161A">161. Procurar la mejora del turismo incluyendo actividades culturales en las que el turista participe, destacando los aspectos que lo hagan más atractivo.</label><br />
+    <input type="radio" id="q161A" name="q161" value="A" />
+    <label for="q161A">Me gusta</label><br />
+    <input type="radio" id="q161B" name="q161" value="B" />
+    <label for="q161B">Me es indiferente</label><br />
+    <input type="radio" id="q161C" name="q161" value="C" />
+    <label for="q161C">No me gusta</label><br />
+    <input type="radio" id="q161D" name="q161" value="D" />
+    <label for="q161D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 162 -->
+  <div class="question">
+    <label for="q162A">162. Trabajar como psicólogo escolar.</label><br />
+    <input type="radio" id="q162A" name="q162" value="A" />
+    <label for="q162A">Me gusta</label><br />
+    <input type="radio" id="q162B" name="q162" value="B" />
+    <label for="q162B">Me es indiferente</label><br />
+    <input type="radio" id="q162C" name="q162" value="C" />
+    <label for="q162C">No me gusta</label><br />
+    <input type="radio" id="q162D" name="q162" value="D" />
+    <label for="q162D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 163 -->
+  <div class="question">
+    <label for="q163A">163. Doblar las voces de actores extranjeros para las versiones traducidas de películas (cine, televisión).</label><br />
+    <input type="radio" id="q163A" name="q163" value="A" />
+    <label for="q163A">Me gusta</label><br />
+    <input type="radio" id="q163B" name="q163" value="B" />
+    <label for="q163B">Me es indiferente</label><br />
+    <input type="radio" id="q163C" name="q163" value="C" />
+    <label for="q163C">No me gusta</label><br />
+    <input type="radio" id="q163D" name="q163" value="D" />
+    <label for="q163D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 164 -->
+  <div class="question">
+    <label for="q164A">164. Trabajar como auxiliar de educación inicial.</label><br />
+    <input type="radio" id="q164A" name="q164" value="A" />
+    <label for="q164A">Me gusta</label><br />
+    <input type="radio" id="q164B" name="q164" value="B" />
+    <label for="q164B">Me es indiferente</label><br />
+    <input type="radio" id="q164C" name="q164" value="C" />
+    <label for="q164C">No me gusta</label><br />
+    <input type="radio" id="q164D" name="q164" value="D" />
+    <label for="q164D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 165 -->
+  <div class="question">
+    <label for="q165A">165. Crear diseños para la mejora de espacios interiores para diversos usos (oficinas, establecimientos, lugares públicos, etc.).</label><br />
+    <input type="radio" id="q165A" name="q165" value="A" />
+    <label for="q165A">Me gusta</label><br />
+    <input type="radio" id="q165B" name="q165" value="B" />
+    <label for="q165B">Me es indiferente</label><br />
+    <input type="radio" id="q165C" name="q165" value="C" />
+    <label for="q165C">No me gusta</label><br />
+    <input type="radio" id="q165D" name="q165" value="D" />
+    <label for="q165D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 166 -->
+  <div class="question">
+    <label for="q166A">166. Ser técnico en marketing.</label><br />
+    <input type="radio" id="q166A" name="q166" value="A" />
+    <label for="q166A">Me gusta</label><br />
+    <input type="radio" id="q166B" name="q166" value="B" />
+    <label for="q166B">Me es indiferente</label><br />
+    <input type="radio" id="q166C" name="q166" value="C" />
+    <label for="q166C">No me gusta</label><br />
+    <input type="radio" id="q166D" name="q166" value="D" />
+    <label for="q166D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 167 -->
+  <div class="question">
+    <label for="q167A">167. Colaborar con el médico en el cuidado de los enfermos, aplicando conocimientos sobre el organismo humano.</label><br />
+    <input type="radio" id="q167A" name="q167" value="A" />
+    <label for="q167A">Me gusta</label><br />
+    <input type="radio" id="q167B" name="q167" value="B" />
+    <label for="q167B">Me es indiferente</label><br />
+    <input type="radio" id="q167C" name="q167" value="C" />
+    <label for="q167C">No me gusta</label><br />
+    <input type="radio" id="q167D" name="q167" value="D" />
+    <label for="q167D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 168 -->
+  <div class="question">
+    <label for="q168A">168. Ser actor realizando doblajes.</label><br />
+    <input type="radio" id="q168A" name="q168" value="A" />
+    <label for="q168A">Me gusta</label><br />
+    <input type="radio" id="q168B" name="q168" value="B" />
+    <label for="q168B">Me es indiferente</label><br />
+    <input type="radio" id="q168C" name="q168" value="C" />
+    <label for="q168C">No me gusta</label><br />
+    <input type="radio" id="q168D" name="q168" value="D" />
+    <label for="q168D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 169 -->
+  <div class="question">
+    <label for="q169A">169. Aplicar los conocimientos técnicos al campo de los seguros, calculando las operaciones financieras para hacer rentables los fondos económicos.</label><br />
+    <input type="radio" id="q169A" name="q169" value="A" />
+    <label for="q169A">Me gusta</label><br />
+    <input type="radio" id="q169B" name="q169" value="B" />
+    <label for="q169B">Me es indiferente</label><br />
+    <input type="radio" id="q169C" name="q169" value="C" />
+    <label for="q169C">No me gusta</label><br />
+    <input type="radio" id="q169D" name="q169" value="D" />
+    <label for="q169D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 170 -->
+  <div class="question">
+    <label for="q170A">170. Trabajar como investigador privado.</label><br />
+    <input type="radio" id="q170A" name="q170" value="A" />
+    <label for="q170A">Me gusta</label><br />
+    <input type="radio" id="q170B" name="q170" value="B" />
+    <label for="q170B">Me es indiferente</label><br />
+    <input type="radio" id="q170C" name="q170" value="C" />
+    <label for="q170C">No me gusta</label><br />
+    <input type="radio" id="q170D" name="q170" value="D" />
+    <label for="q170D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 171 -->
+  <div class="question">
+    <label for="q171A">171. Atender a pasajeros cuando realizan viajes (líneas aéreas, barcos, cruceros).</label><br />
+    <input type="radio" id="q171A" name="q171" value="A" />
+    <label for="q171A">Me gusta</label><br />
+    <input type="radio" id="q171B" name="q171" value="B" />
+    <label for="q171B">Me es indiferente</label><br />
+    <input type="radio" id="q171C" name="q171" value="C" />
+    <label for="q171C">No me gusta</label><br />
+    <input type="radio" id="q171D" name="q171" value="D" />
+    <label for="q171D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 172 -->
+  <div class="question">
+    <label for="q172A">172. Ser teólogo.</label><br />
+    <input type="radio" id="q172A" name="q172" value="A" />
+    <label for="q172A">Me gusta</label><br />
+    <input type="radio" id="q172B" name="q172" value="B" />
+    <label for="q172B">Me es indiferente</label><br />
+    <input type="radio" id="q172C" name="q172" value="C" />
+    <label for="q172C">No me gusta</label><br />
+    <input type="radio" id="q172D" name="q172" value="D" />
+    <label for="q172D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 173 -->
+  <div class="question">
+    <label for="q173A">173. Custodiar establecimientos para evitar que ocurran actos delictivos.</label><br />
+    <input type="radio" id="q173A" name="q173" value="A" />
+    <label for="q173A">Me gusta</label><br />
+    <input type="radio" id="q173B" name="q173" value="B" />
+    <label for="q173B">Me es indiferente</label><br />
+    <input type="radio" id="q173C" name="q173" value="C" />
+    <label for="q173C">No me gusta</label><br />
+    <input type="radio" id="q173D" name="q173" value="D" />
+    <label for="q173D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 174 -->
+  <div class="question">
+    <label for="q174A">174. Ejercer la profesión de especialista en Arte.</label><br />
+    <input type="radio" id="q174A" name="q174" value="A" />
+    <label for="q174A">Me gusta</label><br />
+    <input type="radio" id="q174B" name="q174" value="B" />
+    <label for="q174B">Me es indiferente</label><br />
+    <input type="radio" id="q174C" name="q174" value="C" />
+    <label for="q174C">No me gusta</label><br />
+    <input type="radio" id="q174D" name="q174" value="D" />
+    <label for="q174D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 175 -->
+  <div class="question">
+    <label for="q175A">175. Aplicar conocimientos de Economía para resolver problemas prácticos en empresas, así como establecer planes para el crecimiento de las mismas.</label><br />
+    <input type="radio" id="q175A" name="q175" value="A" />
+    <label for="q175A">Me gusta</label><br />
+    <input type="radio" id="q175B" name="q175" value="B" />
+    <label for="q175B">Me es indiferente</label><br />
+    <input type="radio" id="q175C" name="q175" value="C" />
+    <label for="q175C">No me gusta</label><br />
+    <input type="radio" id="q175D" name="q175" value="D" />
+    <label for="q175D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 176 -->
+  <div class="question">
+    <label for="q176A">176. Realizar trabajos forestales, buscando la conservación del medio ambiente.</label><br />
+    <input type="radio" id="q176A" name="q176" value="A" />
+    <label for="q176A">Me gusta</label><br />
+    <input type="radio" id="q176B" name="q176" value="B" />
+    <label for="q176B">Me es indiferente</label><br />
+    <input type="radio" id="q176C" name="q176" value="C" />
+    <label for="q176C">No me gusta</label><br />
+    <input type="radio" id="q176D" name="q176" value="D" />
+    <label for="q176D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 177 -->
+  <div class="question">
+    <label for="q177A">177. Analizar los métodos de enseñanza, ideando nuevos procedimientos didácticos.</label><br />
+    <input type="radio" id="q177A" name="q177" value="A" />
+    <label for="q177A">Me gusta</label><br />
+    <input type="radio" id="q177B" name="q177" value="B" />
+    <label for="q177B">Me es indiferente</label><br />
+    <input type="radio" id="q177C" name="q177" value="C" />
+    <label for="q177C">No me gusta</label><br />
+    <input type="radio" id="q177D" name="q177" value="D" />
+    <label for="q177D">No conozco</label><br />
+  </div>
+  
+<!-- Pregunta 178 -->
+<div class="question">
+    <label for="q178A">178. Ser médico.</label><br />
+    <input type="radio" id="q178A" name="q178" value="A" />
+    <label for="q178A">Me gusta</label><br />
+    <input type="radio" id="q178B" name="q178" value="B" />
+    <label for="q178B">Me es indiferente</label><br />
+    <input type="radio" id="q178C" name="q178" value="C" />
+    <label for="q178C">No me gusta</label><br />
+    <input type="radio" id="q178D" name="q178" value="D" />
+    <label for="q178D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 179 -->
+  <div class="question">
+    <label for="q179A">179. Diseñar con la computadora elementos para la decoración en cerámica, estampados textiles, escaparates, etc.</label><br />
+    <input type="radio" id="q179A" name="q179" value="A" />
+    <label for="q179A">Me gusta</label><br />
+    <input type="radio" id="q179B" name="q179" value="B" />
+    <label for="q179B">Me es indiferente</label><br />
+    <input type="radio" id="q179C" name="q179" value="C" />
+    <label for="q179C">No me gusta</label><br />
+    <input type="radio" id="q179D" name="q179" value="D" />
+    <label for="q179D">No conozco</label><br />
+  </div>
+  
+  <!-- Pregunta 180 -->
+  <div class="question">
+    <label for="q180A">180. Ser especialista de las Fuerzas Armadas.</label><br />
+    <input type="radio" id="q180A" name="q180" value="A" />
+    <label for="q180A">Me gusta</label><br />
+    <input type="radio" id="q180B" name="q180" value="B" />
+    <label for="q180B">Me es indiferente</label><br />
+    <input type="radio" id="q180C" name="q180" value="C" />
+    <label for="q180C">No me gusta</label><br />
+    <input type="radio" id="q180D" name="q180" value="D" />
+    <label for="q180D">No conozco</label><br />
+  </div>
+  
+
+      <!-- Botón para finalizar el cuestionario -->
+      <button type="button" id="submit">Finalizar</button>
     </form>
-</body>
+  </body>
 </html>

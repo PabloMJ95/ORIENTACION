@@ -1,0 +1,90 @@
+/* Configuración general */
+body {
+    font-family: "Arial", sans-serif;
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Contenedor del cuestionario */
+  form {
+    background: rgba(0, 0, 0, 0.8);
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Estilo de las preguntas */
+  .question {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  /* Etiquetas de las preguntas */
+  label {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Suaviza los cambios de fondo */
+  }
+  
+  /* Estilo de los botones de radio */
+  input[type="radio"] {
+    display: none; /* Los botones de radio están ocultos */
+  }
+  
+  /* Estilo cuando la opción NO está seleccionada */
+  input[type="radio"] + label {
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Efecto cuando pasas el mouse sobre una opción (hover) */
+  input[type="radio"]:not(:checked) + label:hover {
+    background: rgba(0, 255, 0, 0.4); /* Fondo verde suave al pasar el mouse */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el mouse */
+  }
+  
+  /* Estilo cuando la opción está seleccionada (opción marcada) */
+  input[type="radio"]:checked + label {
+    background: #28a745; /* Fondo verde cuando se selecciona la opción */
+    color: white; /* Texto blanco para la opción seleccionada */
+    font-weight: bold; /* Negrita para la opción seleccionada */
+    transform: scale(1.05); /* Efecto de agrandamiento */
+  }
+  
+  /* Estilo para el botón de envío */
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    margin-top: 15px;
+  }
+  
+  button:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+  }
+  
+  /* Responsive (Móvil) */
+  @media (max-width: 600px) {
+    form {
+      width: 90%;
+    }
+  }

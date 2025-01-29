@@ -1,62 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados del Cuestionario</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         function processResults() {
             // Recuperar respuestas del localStorage
             const storedAnswers = localStorage.getItem('questionnaireAnswers');
             if (!storedAnswers) {
                 alert("No se encontraron respuestas. Por favor, completa el cuestionario.");
-                window.location.href = 'index.html'; // Regresa al cuestionario si no hay datos
+                window.location.href = 'index.html'; 
                 return;
             }
 
             const responses = JSON.parse(storedAnswers);
 
-            // Definir categorías y sus preguntas
+            // Categorías y preguntas asociadas
             const categories = {
-                Ciencia: [1, 2, 179, 180],
-                Arte: [9, 14, 15, 60, 174],
-                Deportes: [28, 101, 156],
-                Humanidades: [17, 91, 126],
-                Tecnologia: [3, 55, 141]
+                "Científico": { "Profesión": [62, 74, 76, 130, 71, 132, 142, 148], "Actividad": [45, 59, 65, 71, 73, 79, 81, 123] },
+                "Técnico": { "Profesión": [2, 56, 120, 128, 152], "Actividad": [7, 35, 87, 105, 107, 110] },
+                "Sanitario": { "Profesión": [18, 104, 112, 158, 178], "Actividad": [5, 37, 135, 143, 167] },
+                "Científico - Social": { "Profesión": [48, 96, 126, 146, 172], "Actividad": [17, 91, 94, 113, 159] },
+                "Jurídico - Social": { "Profesión": [6, 100, 102, 108], "Actividad": [23, 29, 32, 89, 119, 145] },
+                "Comunicación - Informática": { "Profesión": [4, 22, 99, 144, 150, 160, 166], "Actividad": [13, 51, 75, 103, 133, 154, 157] },
+                "Psicopedagógico": { "Profesión": [88, 134, 162, 164], "Actividad": [43, 57, 69, 109, 140, 177] },
+                "Empresarial": { "Profesión": [8, 40, 46, 72, 118], "Actividad": [33, 53, 83, 153, 169, 175] },
+                "Informática": { "Profesión": [20, 44, 50, 80, 138], "Actividad": [3, 25, 55, 63, 77, 141, 149] },
+                "Agrario - Agropecuario": { "Profesión": [12, 54, 64, 95, 116], "Actividad": [31, 47, 93, 99, 125, 176] },
+                "Artístico - Plástico": { "Profesión": [34, 60, 78, 90, 106, 124, 174], "Actividad": [9, 14, 97, 115, 117, 131, 165, 179] },
+                "Artístico - Musical": { "Profesión": [26, 42, 52, 82, 122, 168], "Actividad": [15, 21, 61, 85, 155, 163] },
+                "Fuerzas Armadas": { "Profesión": [16, 68, 70, 86, 114, 170, 180], "Actividad": [1, 11, 19, 27, 49, 137, 173] },
+                "Deportivo": { "Profesión": [38, 66, 84, 98, 156], "Actividad": [28, 36, 41, 67, 101, 121, 129, 151] },
+                "Turismo y Hotelería": { "Profesión": [24, 30, 58, 136], "Actividad": [10, 39, 111, 127, 139, 147, 161, 171] }
             };
 
-            // Inicializar puntuaciones por categoría
-            const scores = {
-                Ciencia: 0,
-                Arte: 0,
-                Deportes: 0,
-                Humanidades: 0,
-                Tecnologia: 0
-            };
+            // Inicializar puntuaciones
+            const scores = {};
+            for (const category in categories) {
+                scores[category] = { "Profesión": 0, "Actividad": 0 };
+            }
 
             // Ponderación de respuestas
             const weights = {
-                A: 3, // Me gusta
-                B: 2, // Me es indiferente o tengo dudas
-                C: 1, // No me gusta
+                A: 2, // Me gusta
+                B: 1, // Me es indiferente o tengo dudas
+                C: 0, // No me gusta
                 D: 0  // No conozco
             };
 
-            // Calcular puntuaciones por categoría
-            for (const [category, questions] of Object.entries(categories)) {
-                questions.forEach(question => {
-                    const answer = responses[`q${question}`];
-                    scores[category] += weights[answer] || 0;
-                });
+            for (const [category, subcategories] of Object.entries(categories)) {
+                for (const [subcat, questions] of Object.entries(subcategories)) {
+                    questions.forEach(question => {
+                        const answer = responses[`q${question}`];
+                        scores[category][subcat] += weights[answer] || 0;
+                    });
+                }
             }
 
-            // Mostrar resultados
-            const resultsContainer = document.getElementById('category-results');
-            let resultHTML = '<h2>Resultados por Categoría:</h2>';
-            for (const [category, score] of Object.entries(scores)) {
-                resultHTML += `<p>${category}: ${score} puntos</p>`;
-            }
-            resultsContainer.innerHTML = resultHTML;
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Object.keys(scores),
+                    datasets: [
+                        {
+                            label: 'Profesión',
+                            borderColor: 'blue',
+                            fill: false,
+                            data: Object.values(scores).map(s => s.Profesión)
+                        },
+                        {
+                            label: 'Actividad',
+                            borderColor: 'red',
+                            fill: false,
+                            data: Object.values(scores).map(s => s.Actividad)
+                        }
+                    ]
+                }
+            });
         }
 
         window.onload = processResults;
@@ -64,6 +87,6 @@
 </head>
 <body>
     <h1>Resultados del Cuestionario Vocacional</h1>
-    <div id="category-results" style="margin-top: 20px;"></div>
+    <canvas id="resultsChart"></canvas>
 </body>
 </html>
